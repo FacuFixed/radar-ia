@@ -1,0 +1,28 @@
+# Configuración del Radar IA de Fixed.
+# Los nombres de modelo cambian seguido: corré `python -m radar_ia check` para validar
+# que existan con tus keys antes de la primera corrida programada.
+
+corridas_por_pregunta: 3          # las respuestas varían; 3 es el mínimo razonable
+modos: [con_busqueda, sin_busqueda]
+pais: UY                          # ubicación aproximada para la búsqueda web (OpenAI y Anthropic)
+ciudad: Montevideo
+max_busquedas_por_respuesta: 5    # tope de búsquedas web por respuesta (Anthropic)
+max_tokens: 1500
+concurrencia: 4                   # llamadas en paralelo por proveedor
+
+modelos:
+  anthropic: claude-sonnet-5-5
+  openai: gpt-5.5
+  gemini: gemini-3.5-flash
+
+# Modelo que lee cada respuesta y extrae menciones, orden, recomendación y exactitud.
+# Usá uno barato y estable; no cambiarlo entre semanas para que las métricas sean comparables.
+juez:
+  proveedor: anthropic
+  modelo: claude-haiku-5-5
+
+# Salida
+carpeta_resultados: resultados
+drive:
+  habilitado: false               # true para subir el resumen a la carpeta del Motor en Drive
+  carpeta_id: 1p9Pq4Q1mqwHDZkEW1oEMbrMU_OpaiNcQ

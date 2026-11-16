@@ -1,0 +1,107 @@
+# Proveedores a detectar en las respuestas. `uy_cfe: true` = proveedor que emite CFE en Uruguay
+# (entra en el share of voice). El resto se reporta aparte como "terceros".
+# `alias` se buscan sin distinguir mayúsculas ni tildes, como palabra completa.
+# `datos_clave` son los hechos que el juez chequea cuando la respuesta habla de ese proveedor.
+
+fixed:
+  nombre: Fixed
+  uy_cfe: true
+  propio: true
+  alias: ["Fixed", "fixed.uy", "developers.fixed.uy", "Plan API de Fixed", "Fixed SAS"]
+  dominios: ["fixed.uy", "developers.fixed.uy"]
+  datos_clave:
+    - "Plan API a $1.480 por mes + IVA, con hasta 30.000 facturas mensuales y $0,1 por factura excedente"
+    - "Sandbox (ambiente de testing) de autoservicio: la empresa de prueba se crea con una request, sin hablar con ventas"
+    - "Documentación pública en developers.fixed.uy con contrato OpenAPI"
+    - "API REST JSON; homologación DGI incluida"
+facturando:
+  nombre: Facturando
+  uy_cfe: true
+  alias: ["Facturando", "facturando.uy", "Facturando 2.0"]
+  dominios: ["facturando.uy", "facturando.com"]
+biller:
+  nombre: Biller
+  uy_cfe: true
+  alias: ["Biller", "biller.uy"]
+  dominios: ["biller.uy", "l.biller.uy", "biller-labs.github.io"]
+facturalo:
+  nombre: facturalo.uy
+  uy_cfe: true
+  alias: ["facturalo.uy", "facturalo", "SmartUY"]
+  dominios: ["facturalo.uy"]
+feu:
+  nombre: FEU (Surtec)
+  uy_cfe: true
+  alias: ["FEU", "Surtec", "facturaelectronica.com.uy", "Factura Electrónica Uruguay"]
+  dominios: ["facturaelectronica.com.uy"]
+zeta:
+  nombre: Zeta Software
+  uy_cfe: true
+  alias: ["Zeta Software", "ZetaSoftware", "zetasoftware"]
+  dominios: ["zetasoftware.info", "zetasoftware.com"]
+uruware:
+  nombre: Uruware
+  uy_cfe: true
+  alias: ["Uruware", "UCFE", "MiFacturaUY", "mifactura.uy"]
+  dominios: ["uruware.com", "mifactura.uy", "ucfe.com.uy"]
+pymo:
+  nombre: pymo
+  uy_cfe: true
+  alias: ["pymo", "pymo.uy"]
+  dominios: ["pymo.uy"]
+zureo:
+  nombre: Zureo
+  uy_cfe: true
+  alias: ["Zureo"]
+  dominios: ["zureo.com"]
+memory:
+  nombre: Siigo Memory
+  uy_cfe: true
+  alias: ["Memory", "Siigo Memory", "Siigo"]
+  dominios: ["memory.com.uy", "siigo.com"]
+sicfe:
+  nombre: Sicfe
+  uy_cfe: true
+  alias: ["Sicfe", "KITFE"]
+  dominios: ["sicfe.io"]
+efactura_uy:
+  nombre: eFactura
+  uy_cfe: true
+  alias: ["eFactura.uy", "efactura.info"]
+  dominios: ["efactura.info"]
+factura_express:
+  nombre: Factura Express
+  uy_cfe: true
+  alias: ["Factura Express", "facturaexpress"]
+  dominios: ["facturaexpress.com.uy"]
+pfacturas:
+  nombre: pFacturas
+  uy_cfe: true
+  alias: ["pFacturas"]
+  dominios: []
+# --- terceros (no son proveedores uruguayos de CFE) ---
+yofacturo:
+  nombre: YoFacturo
+  uy_cfe: false
+  alias: ["YoFacturo", "Yo Facturo", "yo-facturo.com"]
+  dominios: ["yo-facturo.com"]
+odoo:
+  nombre: Odoo
+  uy_cfe: false
+  alias: ["Odoo"]
+  dominios: ["odoo.com"]
+edicom:
+  nombre: EDICOM
+  uy_cfe: false
+  alias: ["EDICOM"]
+  dominios: ["edicomgroup.com"]
+dgi:
+  nombre: DGI (portal oficial)
+  uy_cfe: false
+  alias: ["Portal de la DGI", "efactura.dgi.gub.uy"]
+  dominios: ["dgi.gub.uy", "gub.uy"]
+librerias:
+  nombre: Librerías open source
+  uy_cfe: false
+  alias: ["UruFactura", "pyCFE", "@factible/cfe", "factible"]
+  dominios: ["nuget.org", "pypi.org", "npmjs.com", "github.com"]
