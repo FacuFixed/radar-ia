@@ -17,7 +17,7 @@ from typing import Any
 SISTEMA = None  # sin mensaje de sistema: queremos la respuesta "por defecto" del modelo
 
 
-def _reintentar(fn, intentos: int = 4):
+def _reintentar(fn, intentos: int = 6):
     """Reintenta con espera exponencial ante errores transitorios (rate limit, 5xx)."""
     for i in range(intentos):
         try:
@@ -27,7 +27,9 @@ def _reintentar(fn, intentos: int = 4):
             transitorio = any(s in msg for s in ("rate", "429", "overloaded", "529", "500", "502", "503", "timeout"))
             if not transitorio or i == intentos - 1:
                 raise
-            time.sleep(2 ** i + random.random())
+            # los límites de tokens por minuto se liberan en ~1 minuto: esperas de hasta 60 s
+            espera = min(60, 2 ** (i + 1)) if ("rate" in msg or "429" in msg) else 2 ** i
+            time.sleep(espera + random.random() * 2)
 
 
 class ClienteAnthropic:

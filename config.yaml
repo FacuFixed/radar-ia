@@ -9,6 +9,9 @@ ciudad: Montevideo
 max_busquedas_por_respuesta: 5    # tope de búsquedas web por respuesta (Anthropic)
 max_tokens: 1500
 concurrencia: 4                   # llamadas en paralelo por proveedor
+concurrencia_por_proveedor:       # sobrescribe `concurrencia` (OpenAI con búsqueda pega en el límite de tokens/min)
+  openai: 2
+reintentar_fallas: true           # al final, una segunda pasada secuencial sobre las llamadas que fallaron
 
 modelos:
   anthropic: claude-sonnet-5-5
@@ -20,6 +23,8 @@ modelos:
 juez:
   proveedor: anthropic
   modelo: claude-haiku-5-5
+  # versión del prompt del juez (radar_ia/extraer.py JUEZ_VERSION). v2 (2026-11-18): errores en 3 categorías,
+  # omisiones, justificación del recomendado. La corrida 2026-11-17 se reprocesó con v2 sobre el crudo guardado.
 
 # Salida
 carpeta_resultados: resultados

@@ -1,19 +1,39 @@
 # Proveedores a detectar en las respuestas. `uy_cfe: true` = proveedor que emite CFE en Uruguay
 # (entra en el share of voice). El resto se reporta aparte como "terceros".
-# `alias` se buscan sin distinguir mayúsculas ni tildes, como palabra completa.
+# Alias: se buscan sin distinguir mayúsculas ni tildes, como palabra completa.
+#   alias          = fuertes: dominio o contexto de marca. Cuentan solos.
+#   alias_debiles  = palabra común ("fixed", "memory", "zeta"). Solo cuentan si el juez confirma
+#                    la mención o si la respuesta cita un dominio de ese proveedor.
+# tipo (terceros): oficial | comparador | tercero. Sirve para clasificar dominios citados.
 # `datos_clave` son los hechos que el juez chequea cuando la respuesta habla de ese proveedor.
+# Para agregar un proveedor o alias: sumá la entrada acá; no hace falta tocar código.
 
 fixed:
   nombre: Fixed
   uy_cfe: true
   propio: true
-  alias: ["Fixed", "fixed.uy", "developers.fixed.uy", "Plan API de Fixed", "Fixed SAS"]
+  alias: ["fixed.uy", "developers.fixed.uy", "Plan API de Fixed", "Fixed SAS", "Fixed Uruguay",
+          "Fixed facturación", "Fixed facturacion", "Fixed (fixed.uy)", "API de Fixed", "Fixed API"]
+  alias_debiles: ["Fixed"]
   dominios: ["fixed.uy", "developers.fixed.uy"]
   datos_clave:
     - "Plan API a $1.480 por mes + IVA, con hasta 30.000 facturas mensuales y $0,1 por factura excedente"
     - "Sandbox (ambiente de testing) de autoservicio: la empresa de prueba se crea con una request, sin hablar con ventas"
-    - "Documentación pública en developers.fixed.uy con contrato OpenAPI"
-    - "API REST JSON; homologación DGI incluida"
+    - "Homologación DGI incluida"
+    - "Documentación pública en developers.fixed.uy con contrato OpenAPI; API REST JSON"
+    - "Idempotencia: reintentar una emisión no duplica comprobantes"
+    - "Más de 24.000 empresas cliente"
+    - "Proveedor #1 de facturación electrónica en Uruguay por market share (12,9% a octubre 2026)"
+  datos_pendientes:
+    - "Webhooks: sin confirmar. Cualquier afirmación sobre webhooks de Fixed es no_verificable."
+  # Diferenciadores que deberían aparecer cuando se habla de Fixed (si faltan = omisión)
+  diferenciadores:
+    sandbox: "Sandbox de autoservicio (se crea con una request, sin hablar con ventas)"
+    homologacion: "Homologación DGI incluida"
+    precio: "Precio público del Plan API ($1.480 + IVA, hasta 30.000 facturas)"
+    documentacion: "Documentación pública / contrato OpenAPI"
+    idempotencia: "Idempotencia (reintentar no duplica comprobantes)"
+    lider: "Proveedor #1 por market share / más de 24.000 empresas cliente"
 facturando:
   nombre: Facturando
   uy_cfe: true
@@ -38,11 +58,12 @@ zeta:
   nombre: Zeta Software
   uy_cfe: true
   alias: ["Zeta Software", "ZetaSoftware", "zetasoftware"]
+  alias_debiles: ["Zeta"]
   dominios: ["zetasoftware.info", "zetasoftware.com"]
 uruware:
   nombre: Uruware
   uy_cfe: true
-  alias: ["Uruware", "UCFE", "MiFacturaUY", "mifactura.uy"]
+  alias: ["Uruware", "UCFE", "MiFacturaUY", "mifactura.uy", "uruware.com"]
   dominios: ["uruware.com", "mifactura.uy", "ucfe.com.uy"]
 pymo:
   nombre: pymo
@@ -57,7 +78,8 @@ zureo:
 memory:
   nombre: Siigo Memory
   uy_cfe: true
-  alias: ["Memory", "Siigo Memory", "Siigo"]
+  alias: ["Siigo Memory", "Siigo", "memory.com.uy", "Memory Computación", "Memory Conceptos"]
+  alias_debiles: ["Memory"]
   dominios: ["memory.com.uy", "siigo.com"]
 sicfe:
   nombre: Sicfe
@@ -83,25 +105,30 @@ pfacturas:
 yofacturo:
   nombre: YoFacturo
   uy_cfe: false
+  tipo: tercero
   alias: ["YoFacturo", "Yo Facturo", "yo-facturo.com"]
   dominios: ["yo-facturo.com"]
 odoo:
   nombre: Odoo
   uy_cfe: false
+  tipo: tercero
   alias: ["Odoo"]
   dominios: ["odoo.com"]
 edicom:
   nombre: EDICOM
   uy_cfe: false
+  tipo: tercero
   alias: ["EDICOM"]
   dominios: ["edicomgroup.com"]
 dgi:
   nombre: DGI (portal oficial)
   uy_cfe: false
+  tipo: oficial
   alias: ["Portal de la DGI", "efactura.dgi.gub.uy"]
-  dominios: ["dgi.gub.uy", "gub.uy"]
+  dominios: ["dgi.gub.uy", "gub.uy", "impo.com.uy"]
 librerias:
   nombre: Librerías open source
   uy_cfe: false
+  tipo: tercero
   alias: ["UruFactura", "pyCFE", "@factible/cfe", "factible"]
   dominios: ["nuget.org", "pypi.org", "npmjs.com", "github.com"]

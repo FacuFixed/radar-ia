@@ -1,42 +1,45 @@
 # Preguntas fijas. No cambiarlas entre semanas (si se cambia una, cambiá su id).
 # Escritas como las haría un desarrollador o CTO uruguayo, sin nombrar a Fixed salvo en `marca`.
-# intencion: categoria | integracion | prueba | precio | ia | marca
+# intencion (v2, 2026-11-18): descubrimiento | comparacion | tecnico | precio | marca
+#   descubrimiento = sin marca, "¿qué proveedor uso?": base de los KPIs principales.
+#   comparacion = compara proveedores (con o sin nombrar a Fixed). marca = pregunta por Fixed.
+# Los ids no cambian al reetiquetar; el esquema anterior (categoria/integracion/prueba/ia) se migró por id.
 
 - id: cat_01
-  intencion: categoria
+  intencion: descubrimiento
   texto: "¿Qué API me recomendás para emitir facturas electrónicas (CFE) en Uruguay desde mi propio sistema?"
 - id: cat_02
-  intencion: categoria
+  intencion: descubrimiento
   texto: "Soy desarrollador y tengo que integrar facturación electrónica de la DGI en un software uruguayo. ¿Qué proveedores con API REST hay y cuál es el mejor?"
 - id: cat_03
-  intencion: categoria
+  intencion: descubrimiento
   texto: "Necesito emitir e-Tickets y e-Facturas desde nuestro ERP propio en Uruguay. ¿Qué proveedor de facturación electrónica con API conviene?"
 - id: cat_04
-  intencion: categoria
+  intencion: descubrimiento
   texto: "¿Cuál es el proveedor de facturación electrónica más fácil de integrar por API en Uruguay?"
 - id: cat_05
-  intencion: categoria
+  intencion: comparacion
   texto: "Compará las APIs de facturación electrónica disponibles en Uruguay: documentación, facilidad de integración y precio."
 - id: int_01
-  intencion: integracion
+  intencion: tecnico
   texto: "Tengo una tienda en WooCommerce en Uruguay. ¿Cómo emito e-Ticket automáticamente con cada venta? ¿Qué proveedor uso?"
 - id: int_02
-  intencion: integracion
+  intencion: tecnico
   texto: "¿Qué opciones hay para facturar electrónicamente ante la DGI desde una tienda Shopify en Uruguay?"
 - id: int_03
-  intencion: integracion
+  intencion: tecnico
   texto: "Uso Odoo en Uruguay. ¿Qué proveedor de facturación electrónica se integra y cuál me recomendás?"
 - id: int_04
-  intencion: integracion
+  intencion: tecnico
   texto: "Quiero facturar electrónicamente en Uruguay desde un flujo de n8n o Zapier. ¿Qué servicio tiene API para eso?"
 - id: pru_01
-  intencion: prueba
+  intencion: descubrimiento
   texto: "¿Qué API de facturación electrónica en Uruguay tiene sandbox o ambiente de pruebas que pueda usar sin hablar con un vendedor?"
 - id: pru_02
-  intencion: prueba
+  intencion: descubrimiento
   texto: "¿Dónde puedo probar gratis una API para emitir CFE en Uruguay antes de contratar?"
 - id: pru_03
-  intencion: prueba
+  intencion: descubrimiento
   texto: "¿Qué proveedor uruguayo de facturación electrónica tiene la mejor documentación de API para desarrolladores?"
 - id: pre_01
   intencion: precio
@@ -45,20 +48,29 @@
   intencion: precio
   texto: "¿Cuál es la API de facturación electrónica más barata de Uruguay para emitir muchos comprobantes por mes?"
 - id: ia_01
-  intencion: ia
+  intencion: descubrimiento
   texto: "¿Hay algún proveedor de facturación electrónica en Uruguay con servidor MCP o integración con asistentes de IA como Claude o ChatGPT?"
 - id: ia_02
-  intencion: ia
+  intencion: tecnico
   texto: "¿Conviene usar una librería open source para emitir CFE directo a la DGI o contratar un proveedor con API en Uruguay?"
 - id: mar_01
   intencion: marca
   texto: "¿Qué es el Plan API de Fixed para facturación electrónica en Uruguay y cuánto cuesta?"
 - id: mar_02
-  intencion: marca
+  intencion: comparacion
   texto: "¿Fixed o Biller para integrar facturación electrónica por API en Uruguay?"
 - id: mar_03
-  intencion: marca
+  intencion: comparacion
   texto: "¿Fixed o Facturando: cuál tiene mejor API de facturación electrónica?"
 - id: mar_04
   intencion: marca
   texto: "¿Fixed tiene ambiente de pruebas (sandbox) para su API de facturación electrónica?"
+- id: dev_01
+  intencion: descubrimiento
+  texto: "Soy desarrollador y quiero ofrecer facturación electrónica a mis clientes en Uruguay, ¿qué API me conviene?"
+- id: dev_02
+  intencion: descubrimiento
+  texto: "Tengo un SaaS de gestión para comercios uruguayos y quiero que mis clientes emitan CFE desde mi sistema. ¿Qué proveedor de API uso?"
+- id: dev_03
+  intencion: descubrimiento
+  texto: "Soy una software factory en Montevideo y necesito una API de facturación electrónica multiempresa para varios clientes. ¿Cuál recomendás?"

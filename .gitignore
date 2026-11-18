@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 .venv/
 resultados/_simulado/
+resultados/_prueba/
