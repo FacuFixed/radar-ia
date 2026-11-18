@@ -1,20 +1,19 @@
 # Por qué ganan otros · 2026-11-17
 
-De 232 respuestas válidas: **78** recomiendan a otro proveedor como primera opción, **17** a Fixed y **137** no eligen ninguno.
+De 232 respuestas válidas: **73** recomiendan a otro proveedor como primera opción, **17** a Fixed y **142** no eligen ninguno.
 
 ## Ganadores
 
 | Proveedor | Veces |
 |---|---|
-| biller | 34 |
+| biller | 33 |
 | uruware | 16 |
 | facturando | 12 |
-| facturalo | 4 |
-| dgi | 4 |
+| dgi | 3 |
 | pfacturas | 3 |
+| facturalo | 2 |
 | zureo | 2 |
 | yofacturo | 1 |
-| sicfe | 1 |
 | zeta | 1 |
 
 ## Dónde gana cada uno
@@ -22,16 +21,14 @@ De 232 respuestas válidas: **78** recomiendan a otro proveedor como primera opc
 | Ganador | Asistente | Intención | Modo | Veces |
 |---|---|---|---|---|
 | biller | Gemini | descubrimiento | sin_busqueda | 10 |
-| biller | Claude | descubrimiento | sin_busqueda | 7 |
+| biller | Claude | descubrimiento | sin_busqueda | 8 |
 | biller | Gemini | descubrimiento | con_busqueda | 4 |
 | facturando | ChatGPT | descubrimiento | con_busqueda | 4 |
-| uruware | ChatGPT | descubrimiento | sin_busqueda | 3 |
+| uruware | ChatGPT | descubrimiento | sin_busqueda | 4 |
 | facturando | Claude | precio | con_busqueda | 3 |
 | biller | Gemini | precio | sin_busqueda | 3 |
 | biller | ChatGPT | descubrimiento | sin_busqueda | 2 |
 | dgi | ChatGPT | descubrimiento | sin_busqueda | 2 |
-| biller | Claude | comparacion | sin_busqueda | 2 |
-| facturalo | Gemini | tecnico | con_busqueda | 2 |
 | pfacturas | Claude | tecnico | con_busqueda | 2 |
 | uruware | Claude | tecnico | con_busqueda | 2 |
 | uruware | Gemini | tecnico | con_busqueda | 2 |
@@ -39,21 +36,19 @@ De 232 respuestas válidas: **78** recomiendan a otro proveedor como primera opc
 | biller | Claude | tecnico | sin_busqueda | 2 |
 | biller | Gemini | tecnico | sin_busqueda | 2 |
 | uruware | Claude | tecnico | sin_busqueda | 2 |
-| uruware | Gemini | tecnico | sin_busqueda | 2 |
 | uruware | ChatGPT | tecnico | sin_busqueda | 2 |
 | facturando | ChatGPT | precio | con_busqueda | 2 |
 | facturalo | Gemini | descubrimiento | con_busqueda | 1 |
-| facturalo | ChatGPT | descubrimiento | con_busqueda | 1 |
 | yofacturo | Claude | descubrimiento | con_busqueda | 1 |
-| sicfe | Gemini | descubrimiento | sin_busqueda | 1 |
 | uruware | Gemini | descubrimiento | sin_busqueda | 1 |
 | zureo | ChatGPT | descubrimiento | sin_busqueda | 1 |
 | facturando | Gemini | comparacion | con_busqueda | 1 |
+| biller | Claude | comparacion | sin_busqueda | 1 |
 | biller | Gemini | comparacion | sin_busqueda | 1 |
-| facturando | Gemini | tecnico | con_busqueda | 1 |
+| facturalo | Gemini | tecnico | con_busqueda | 1 |
+| facturando | ChatGPT | tecnico | con_busqueda | 1 |
 | pfacturas | ChatGPT | tecnico | con_busqueda | 1 |
-| biller | ChatGPT | tecnico | sin_busqueda | 1 |
-| dgi | Gemini | tecnico | sin_busqueda | 1 |
+| uruware | Gemini | tecnico | sin_busqueda | 1 |
 | zeta | Gemini | tecnico | sin_busqueda | 1 |
 | zureo | Gemini | tecnico | sin_busqueda | 1 |
 | facturando | Gemini | precio | con_busqueda | 1 |
@@ -64,14 +59,14 @@ De 232 respuestas válidas: **78** recomiendan a otro proveedor como primera opc
 ### biller · Gemini · descubrimiento · con_busqueda
 **Pregunta (cat_03):** Necesito emitir e-Tickets y e-Facturas desde nuestro ERP propio en Uruguay. ¿Qué proveedor de facturación electrónica con API conviene?
 
-> Si querés rapidez de desarrollo, mejor Developer Experience e integración limpia JSON: optá por Biller.
+> Si querés rapidez de desarrollo, mejor Developer Experience e integración limpia JSON: optá por **Biller**.
 
 URLs citadas: faktu.uy · memory.com.uy · getpostman.com · biller.uy · softwarecircular.com · facturando.uy · uruware.com · sicfe.com.uy · dynamica.com.uy
 
 ### biller · Gemini · descubrimiento · con_busqueda
 **Pregunta (pru_01):** ¿Qué API de facturación electrónica en Uruguay tiene sandbox o ambiente de pruebas que pueda usar sin hablar con un vendedor?
 
-> Si querés empezar a hacer peticiones cURL o Postman en menos de 5 minutos: 1. Entrá en test.biller.uy. 2. Registrate y crea una "empresa de prueba". 3. Copiá tu token desde el panel e interactuá con los endpoints de prueba.
+> Es una de las soluciones más populares y *developer-friendly* en el mercado uruguayo.
 
 URLs citadas: fixed.uy · biller.uy · facturalive.com · facture.uy · getpostman.com · facturando.uy
 
@@ -96,46 +91,39 @@ URLs citadas: gosocket.net · fixed.uy · facture.uy · biller.uy · github.com 
 
 URLs citadas: nextdata.uy · facturalo.uy · contagenius.com · cedu.org.uy · invoicemyclients.com · datak.co
 
-### facturalo · ChatGPT · descubrimiento · con_busqueda
-**Pregunta (pru_02):** ¿Dónde puedo probar gratis una API para emitir CFE en Uruguay antes de contratar?
-
-> Ideal si querés: probar endpoints, emitir comprobantes de prueba, revisar estados por webhook y decidir después si contratás.
-
-URLs citadas: efactura.dgi.gub.uy/frontend/afiledownload · facture.uy/funcionalidades/integraciones · fixed.uy/facturarConAPI · docapi.s1.surtec.com.uy · facturar.uy/desarrolladores
-
 ### facturando · ChatGPT · descubrimiento · con_busqueda
 **Pregunta (cat_01):** ¿Qué API me recomendás para emitir facturas electrónicas (CFE) en Uruguay desde mi propio sistema?
 
-> Si querés algo simple y rápido de integrar: miraría primero Facturando.uy. Tiene API REST pública, autenticación Bearer, JSON, y un flujo bastante directo
+> Si querés algo simple y rápido de integrar: miraría primero **Facturando.uy**. Tiene API REST pública, autenticación Bearer, JSON, y un flujo bastante directo
 
 URLs citadas: facturando.uy/api/doc · facturar.uy/desarrolladores · facture.uy/funcionalidades/integraciones · gub.uy/direccion-general-impositiva/guia-ingreso-facturacion-electronica · efactura.dgi.gub.uy/files/descripcion-e-factura-archivo-pdf-263-kb
 
 ### facturando · ChatGPT · descubrimiento · con_busqueda
 **Pregunta (cat_03):** Necesito emitir e-Tickets y e-Facturas desde nuestro ERP propio en Uruguay. ¿Qué proveedor de facturación electrónica con API conviene?
 
-> Para un ERP propio que solo necesita “emitir CFE válidos y obtener PDF/CAE/serie/número”, es difícil ganarle al plan API de $890 + IVA con facturación ilimitada.
+> Para un ERP propio que solo necesita “emitir CFE válidos y obtener PDF/CAE/serie/número”, es difícil ganarle al plan API de **$890 + IVA** con facturación ilimitada.
 
 URLs citadas: gub.uy/direccion-general-impositiva/guia-ingreso-facturacion-electronica · facturando.com/api · nextdata.uy/api-facturacion-electronica-uruguay · biller.uy · bigu.ai/uy/precios · facturar.uy/preguntas-frecuentes · fixed.uy
 
 ### facturando · ChatGPT · descubrimiento · con_busqueda
 **Pregunta (cat_03):** Necesito emitir e-Tickets y e-Facturas desde nuestro ERP propio en Uruguay. ¿Qué proveedor de facturación electrónica con API conviene?
 
-> Mejor primera opción costo/API: **Facturando**. Conviene si quieren **conectar el ERP por REST**, emitir desde su sistema y no usar otro ERP paralelo.
+> Mejor primera opción costo/API: **Facturando**
+Conviene si quieren **conectar el ERP por REST**, emitir desde su sistema y no usar otro ERP paralelo.
 
 URLs citadas: facturando.com/api · ayuda.biller.uy/es/knowledge/facturaci%C3%B3n-por-api-rest · ayuda.biller.uy/es/knowledge/planes · fixed.uy · nextdata.uy · docs.bigu.ai/docs/facturacion/api · efactura.dgi.gub.uy/principal/ampliacion_de_contenido/listado-de-proveedores-de-software-de-comprobantes-fiscales-electronicos · gub.uy/direccion-general-impositiva/guia-ingreso-facturacion-electronica
 
 ### facturando · ChatGPT · descubrimiento · con_busqueda
 **Pregunta (cat_04):** ¿Cuál es el proveedor de facturación electrónica más fácil de integrar por API en Uruguay?
 
-> Para un desarrollador, "fácil de integrar" suele significar: 1. Documentación pública sin tener que hablar con ventas. 2. API REST JSON estándar. 3. Autenticación simple.
+> Para un desarrollador, "fácil de integrar" suele significar: Documentación pública sin tener que hablar con ventas. API REST JSON estándar. Autenticación simple. Pocos endpoints obligatorios para emitir.
 
 URLs citadas: facturando.uy/api/doc · fixed.uy · ayuda.biller.uy/es/knowledge/facturaci%C3%B3n-por-api-rest · gub.uy/direccion-general-impositiva/guia-ingreso-facturacion-electronica
 
 ### yofacturo · Claude · descubrimiento · con_busqueda
 **Pregunta (ia_01):** ¿Hay algún proveedor de facturación electrónica en Uruguay con servidor MCP o integración con asistentes de IA como Claude o ChatGPT?
 
-> Proveedor con MCP: YoFacturo
-- YoFacturo tiene un servidor MCP para conectar Claude u otro asistente de IA a tu facturación. Está disponible desde el plan Básico y funciona con clientes como Claude Desktop, Claude Code, Cursor o VS Code.
+> Proveedor con MCP: YoFacturo. YoFacturo tiene un servidor MCP para conectar Claude u otro asistente de IA a tu facturación. Está disponible desde el plan Básico
 
 URLs citadas: yo-facturo.com/blog/conectar-ia-facturacion-mcp · yo-facturo.com/blog/que-es-el-cfe-en-uruguay · glama.ai/mcp/servers/junter1989k-ai/uruguay-invoice-mcp · glama.ai/mcp/servers · glama.ai/mcp/connectors/app.wishpool/uruguay-invoice-mcp · pypi.org/project/mcp-uruguay/0.14.0 · fixed.uy · facturu.com
 
@@ -148,7 +136,7 @@ URLs citadas: yo-facturo.com/blog/conectar-ia-facturacion-mcp · yo-facturo.com/
 ### biller · Claude · descubrimiento · sin_busqueda
 **Pregunta (cat_03):** Necesito emitir e-Tickets y e-Facturas desde nuestro ERP propio en Uruguay. ¿Qué proveedor de facturación electrónica con API conviene?
 
-> Biller: muy orientado a API, con documentación clara y sandbox. Suele ser la opción más ágil para integrar desde un ERP propio.
+> Suele ser la opción más ágil para integrar desde un ERP propio.
 
 
 ### biller · Claude · descubrimiento · sin_busqueda
@@ -160,7 +148,7 @@ URLs citadas: yo-facturo.com/blog/conectar-ia-facturacion-mcp · yo-facturo.com/
 ### biller · Claude · descubrimiento · sin_busqueda
 **Pregunta (cat_04):** ¿Cuál es el proveedor de facturación electrónica más fácil de integrar por API en Uruguay?
 
-> Si buscas rapidez y una API limpia, empieza probando **Biller**.
+> suele citarse como la más moderna y simple para integrar. Tiene API REST, documentación pública y buena aceptación en startups, SaaS y e-commerce.
 
 
 ### biller · Claude · descubrimiento · sin_busqueda
@@ -176,6 +164,12 @@ URLs citadas: yo-facturo.com/blog/conectar-ia-facturacion-mcp · yo-facturo.com/
 
 
 ### biller · Claude · descubrimiento · sin_busqueda
+**Pregunta (pru_02):** ¿Dónde puedo probar gratis una API para emitir CFE en Uruguay antes de contratar?
+
+> **Biller** (biller.uy): API REST con documentación pública y ambiente de test.
+
+
+### biller · Claude · descubrimiento · sin_busqueda
 **Pregunta (pru_03):** ¿Qué proveedor uruguayo de facturación electrónica tiene la mejor documentación de API para desarrolladores?
 
 > Biller (biller.uy): enfoque muy orientado a desarrolladores, con API REST/JSON y documentación pública. Suele ser la primera opción para integraciones nuevas.
@@ -188,21 +182,22 @@ URLs citadas: yo-facturo.com/blog/conectar-ia-facturacion-mcp · yo-facturo.com/
 
 
 ### biller · Gemini · descubrimiento · sin_busqueda
+**Pregunta (cat_01):** ¿Qué API me recomendás para emitir facturas electrónicas (CFE) en Uruguay desde mi propio sistema?
+
+> ### 1. **Biller** *(La opción más moderna y "Developer-Friendly")*
+Si buscas una **API REST moderna (JSON)**, excelente documentación y un proceso de integración rápido, Biller es hoy una de las mejores opciones en el mercado uruguayo.
+
+
+### biller · Gemini · descubrimiento · sin_busqueda
 **Pregunta (cat_02):** Soy desarrollador y tengo que integrar facturación electrónica de la DGI en un software uruguayo. ¿Qué proveedores con API REST hay y cuál es el mejor?
 
-> #### **A. Biller (Recomendado para Developers / Startups / SaaS)** Es la opción más moderna y "developer-centric" del mercado uruguayo actual.
+> Es la opción más moderna y "developer-centric" del mercado uruguayo actual.
 
 
 ### biller · Gemini · descubrimiento · sin_busqueda
 **Pregunta (cat_04):** ¿Cuál es el proveedor de facturación electrónica más fácil de integrar por API en Uruguay?
 
-> Es actualmente una de las opciones favoritas para startups, plataformas e-commerce y aplicaciones web modernas debido a su enfoque Developer Experience (DX).
-
-
-### biller · Gemini · descubrimiento · sin_busqueda
-**Pregunta (cat_04):** ¿Cuál es el proveedor de facturación electrónica más fácil de integrar por API en Uruguay?
-
-> En el mercado uruguayo, si buscas la **facilidad de integración para desarrolladores** (API REST moderna, buena documentación en formato JSON, entorno de pruebas o *sandbox* ágil y soporte técnico rápido), la respuesta corta es **Biller**.
+> Es ampliamente considerado por la comunidad de software en Uruguay como el proveedor con la API más moderna y fácil de usar.
 
 
 ### biller · Gemini · descubrimiento · sin_busqueda
@@ -214,7 +209,8 @@ URLs citadas: yo-facturo.com/blog/conectar-ia-facturacion-mcp · yo-facturo.com/
 ### biller · Gemini · descubrimiento · sin_busqueda
 **Pregunta (pru_01):** ¿Qué API de facturación electrónica en Uruguay tiene sandbox o ambiente de pruebas que pueda usar sin hablar con un vendedor?
 
-> Biller es la plataforma moderna SaaS más orientada a desarrolladores en Uruguay. Sandbox autónomo: Te permite registrarte en su plataforma, crear una cuenta de desarrollo y acceder a su API REST y documentación técnica de forma inmediata y self-service
+> **Biller** es la plataforma moderna SaaS más orientada a desarrolladores en Uruguay.
+* **Sandbox autónomo:** Te permite registrarte en su plataforma, crear una cuenta de desarrollo y acceder a su API REST y documentación técnica **de forma inmediata y self-service**, sin tener que agendar una llamada de ventas.
 
 
 ### biller · Gemini · descubrimiento · sin_busqueda
@@ -226,19 +222,19 @@ URLs citadas: yo-facturo.com/blog/conectar-ia-facturacion-mcp · yo-facturo.com/
 ### biller · Gemini · descubrimiento · sin_busqueda
 **Pregunta (pru_03):** ¿Qué proveedor uruguayo de facturación electrónica tiene la mejor documentación de API para desarrolladores?
 
-> el proveedor reconocido por la comunidad de desarrolladores en Uruguay por tener la **mejor documentación de API y mejor Developer Experience (DX)** es **Biller**.
+> Biller fue diseñado desde sus inicios como un producto SaaS modern-first, pensado para integrarse fácilmente mediante código.
 
 
 ### biller · Gemini · descubrimiento · sin_busqueda
 **Pregunta (pru_03):** ¿Qué proveedor uruguayo de facturación electrónica tiene la mejor documentación de API para desarrolladores?
 
-> El candidato número 1 para startups, SaaS y proyectos modernos. Biller nació con un enfoque API-First
+> Biller nació con un enfoque *API-First*. A diferencia de los proveedores tradicionales que adaptaron sistemas viejos, Biller fue diseñado desde cero para ser integrado por desarrolladores.
 
 
 ### biller · Gemini · descubrimiento · sin_busqueda
 **Pregunta (ia_01):** ¿Hay algún proveedor de facturación electrónica en Uruguay con servidor MCP o integración con asistentes de IA como Claude o ChatGPT?
 
-> **Biller (Recomendado):** Es la opción más *developer-friendly* y moderna de Uruguay. Su API es RESTful, limpia y muy fácil de integrar.
+> **Biller (Recomendado):** Es la opción más *developer-friendly* y moderna de Uruguay. Su API es RESTful, limpia y muy fácil de integrar. Es el candidato ideal para construirle un servidor MCP encima o una *Action* de ChatGPT.
 
 
 ### biller · ChatGPT · descubrimiento · sin_busqueda
@@ -260,31 +256,25 @@ URLs citadas: yo-facturo.com/blog/conectar-ia-facturacion-mcp · yo-facturo.com/
 ### dgi · ChatGPT · descubrimiento · sin_busqueda
 **Pregunta (pru_01):** ¿Qué API de facturación electrónica en Uruguay tiene sandbox o ambiente de pruebas que pueda usar sin hablar con un vendedor?
 
-> Si el requisito es "crear cuenta y obtener credenciales de prueba sin hablar con ventas", en Uruguay la opción más clara es: ## 1. Integración directa con DGI — ambiente de testing / homologación
+> Si querés evitar vendedores, integrarte directo con DGI es la vía más autoservicio
 
 
 ### dgi · ChatGPT · descubrimiento · sin_busqueda
 **Pregunta (pru_01):** ¿Qué API de facturación electrónica en Uruguay tiene sandbox o ambiente de pruebas que pueda usar sin hablar con un vendedor?
 
-> La opción más clara **sin hablar con un vendedor** es usar directamente el **ambiente de testing / homologación de DGI Uruguay** para CFE
-
-
-### sicfe · Gemini · descubrimiento · sin_busqueda
-**Pregunta (cat_03):** Necesito emitir e-Tickets y e-Facturas desde nuestro ERP propio en Uruguay. ¿Qué proveedor de facturación electrónica con API conviene?
-
-> Es probablemente el proveedor más popular entre las casas de software y desarrolladores independientes en Uruguay.
+> La opción más clara **sin hablar con un vendedor** es usar directamente el **ambiente de testing / homologación de DGI Uruguay** para CFE —Comprobantes Fiscales Electrónicos—.
 
 
 ### uruware · Gemini · descubrimiento · sin_busqueda
 **Pregunta (pru_02):** ¿Dónde puedo probar gratis una API para emitir CFE en Uruguay antes de contratar?
 
-> Uruware es uno de los proveedores más consolidados en Uruguay y su solución FEverest está diseñada específicamente para integrarse vía API (SOAP / REST).
+> Uruware es uno de los proveedores más consolidados en Uruguay y su solución **FEverest** está diseñada específicamente para integrarse vía API (SOAP / REST).
 
 
 ### uruware · ChatGPT · descubrimiento · sin_busqueda
 **Pregunta (cat_01):** ¿Qué API me recomendás para emitir facturas electrónicas (CFE) en Uruguay desde mi propio sistema?
 
-> Si tu prioridad es integrar rápido desde tu sistema, elegiría un proveedor tipo **Uruware** o similar, con foco técnico/API, y les pediría:
+> Si tu prioridad es integrar rápido desde tu sistema, elegiría un proveedor tipo **Uruware** o similar, con foco técnico/API
 
 
 ### uruware · ChatGPT · descubrimiento · sin_busqueda
@@ -299,6 +289,12 @@ URLs citadas: yo-facturo.com/blog/conectar-ia-facturacion-mcp · yo-facturo.com/
 > Suele ser una alternativa fuerte para empresas uruguayas que necesitan integrar su propio ERP con CFE de DGI.
 
 
+### uruware · ChatGPT · descubrimiento · sin_busqueda
+**Pregunta (cat_04):** ¿Cuál es el proveedor de facturación electrónica más fácil de integrar por API en Uruguay?
+
+> Si buscás una integración API-first, miraría con prioridad opciones como Uruware, Sovos o EDICOM, porque suelen estar más orientadas a integraciones empresariales y automatización.
+
+
 ### zureo · ChatGPT · descubrimiento · sin_busqueda
 **Pregunta (pru_03):** ¿Qué proveedor uruguayo de facturación electrónica tiene la mejor documentación de API para desarrolladores?
 
@@ -308,15 +304,9 @@ URLs citadas: yo-facturo.com/blog/conectar-ia-facturacion-mcp · yo-facturo.com/
 ### facturando · Gemini · comparacion · con_busqueda
 **Pregunta (mar_03):** ¿Fixed o Facturando: cuál tiene mejor API de facturación electrónica?
 
-> Mejor API por desarrollador/facilidad de código: **Facturando**, debido a que el patrón `POST /sales` simplifica sustancialmente la lógica del backend
+> Mejor API por desarrollador/facilidad de código: Facturando, debido a que el patrón `POST /sales` simplifica sustancialmente la lógica del backend
 
 URLs citadas: facturando.uy · comparasoftware.com.uy · fixed.uy
-
-### biller · Claude · comparacion · sin_busqueda
-**Pregunta (mar_02):** ¿Fixed o Biller para integrar facturación electrónica por API en Uruguay?
-
-> "Biller es un proveedor muy conocido en Uruguay, con enfoque en API REST, documentación pública e integraciones con e-commerce y ERPs. Suele ser la primera opción cuando el objetivo es integrar por código desde un sistema propio."
-
 
 ### biller · Claude · comparacion · sin_busqueda
 **Pregunta (mar_02):** ¿Fixed o Biller para integrar facturación electrónica por API en Uruguay?
@@ -327,15 +317,8 @@ URLs citadas: facturando.uy · comparasoftware.com.uy · fixed.uy
 ### biller · Gemini · comparacion · sin_busqueda
 **Pregunta (mar_02):** ¿Fixed o Biller para integrar facturación electrónica por API en Uruguay?
 
-> Biller nació con un enfoque muy tecnológico, pensado específicamente para integrarse vía API con softwares de terceros, e-commerce, SaaS y plataformas de cobro.
+> Para integraciones puras por API, la mayoría de los desarrolladores en Uruguay prefieren Biller por su facilidad de implementación y robustez en la API.
 
-
-### facturalo · Gemini · tecnico · con_busqueda
-**Pregunta (int_01):** Tengo una tienda en WooCommerce en Uruguay. ¿Cómo emito e-Ticket automáticamente con cada venta? ¿Qué proveedor uso?
-
-> Para emitir e-Tickets sin escribir código, facturalo.uy o el plugin oficial de pFacturas son soluciones ágiles y probadas específicamente para el mercado uruguayo.
-
-URLs citadas: gro.com.uy · wordpress.org · logistock.uy · facturalo.uy · hostadmin.uy · puntoexe.com.uy · facturando.uy · floogos.com
 
 ### facturalo · Gemini · tecnico · con_busqueda
 **Pregunta (int_04):** Quiero facturar electrónicamente en Uruguay desde un flujo de n8n o Zapier. ¿Qué servicio tiene API para eso?
@@ -344,12 +327,12 @@ URLs citadas: gro.com.uy · wordpress.org · logistock.uy · facturalo.uy · hos
 
 URLs citadas: firox.uy · facturalo.uy · biller.uy · getpostman.com · youtube.com · facturando.uy · facturando.com · fixed.uy · uruware.com · scribd.com · credantus.com · github.com
 
-### facturando · Gemini · tecnico · con_busqueda
-**Pregunta (int_02):** ¿Qué opciones hay para facturar electrónicamente ante la DGI desde una tienda Shopify en Uruguay?
+### facturando · ChatGPT · tecnico · con_busqueda
+**Pregunta (int_04):** Quiero facturar electrónicamente en Uruguay desde un flujo de n8n o Zapier. ¿Qué servicio tiene API para eso?
 
-> Contabilium Uruguay: Plataforma de gestión contable y facturación que incluye una integración en su catálogo para Shopify. Sincroniza órdenes pagadas y emite la facturación correspondiente automáticamente.
+> Muy apto para `HTTP Request` en n8n o `Webhooks by Zapier`. ([facturando.uy](https://facturando.uy/api/doc))
 
-URLs citadas: seosur.com.uy · asystax.com.uy · websimple.ar · floogos.com · facturando.uy · contabilium.com.uy · shopify.com · gub.uy
+URLs citadas: facturando.uy/api/doc · facturar.uy/preguntas-frecuentes · ayuda.biller.uy/es/knowledge/facturaci%C3%B3n-por-api-rest · docs.bigu.ai/docs/facturacion/api · fixed.uy/facturarConAPI · nextdata.uy/desarrolladores · docs.hostadmin.uy/api · zynvo.uy · gub.uy/direccion-general-impositiva/guia-ingreso-facturacion-electronica
 
 ### pfacturas · Claude · tecnico · con_busqueda
 **Pregunta (int_01):** Tengo una tienda en WooCommerce en Uruguay. ¿Cómo emito e-Ticket automáticamente con cada venta? ¿Qué proveedor uso?
@@ -361,16 +344,16 @@ URLs citadas: hostadmin.uy/guias/facturacion-electronica-uruguay · asystax.com.
 ### pfacturas · Claude · tecnico · con_busqueda
 **Pregunta (int_01):** Tengo una tienda en WooCommerce en Uruguay. ¿Cómo emito e-Ticket automáticamente con cada venta? ¿Qué proveedor uso?
 
-> Lo más directo: pFacturas tiene plugin oficial y control de dígito verificador de RUT y cédula, y cubre el caso e-Ticket / e-Factura según lo que ponga el cliente en el checkout.
+> Si querés lo más directo: pFacturas tiene plugin oficial y control de dígito verificador de RUT y cédula, y cubre el caso e-Ticket / e-Factura según lo que ponga el cliente en el checkout.
 
 URLs citadas: hostadmin.uy/guias/facturacion-electronica-uruguay · wordpress.org/plugins/pfacturas-for-woocommerce · efactura.puntoexe.com.uy/facturaci%C3%B3n-electr%C3%B3nica/woocommerce-integrado · facturando.uy · facturando.com/api · facturaya.uy · fixed.uy/facturarConAPI · facture.uy · wordpress.org/plugins/dynamica-facturacion-electronica
 
 ### pfacturas · ChatGPT · tecnico · con_busqueda
 **Pregunta (int_01):** Tengo una tienda en WooCommerce en Uruguay. ¿Cómo emito e-Ticket automáticamente con cada venta? ¿Qué proveedor uso?
 
-> mi recomendación si querés algo bien específico para WooCommerce Uruguay. Tiene plugin para WooCommerce, modo demo/testing/producción, emisión automática según estado de la orden
+> Para una tienda WooCommerce "normal", empezaría por **pFacturas / PuntoExe**, porque tiene **plugin específico para WooCommerce Uruguay** publicado en WordPress.org, emite CFE automáticamente, soporta **Demo, Testing y Producción**, valida RUT y envía el PDF al cliente por email.
 
-URLs citadas: es-uy.wordpress.org/plugins/pfacturas-for-woocommerce · facturando.uy · hostadmin.uy/host-factura/api · gub.uy/direccion-general-impositiva/comunicacion/publicaciones/se-documenta-regimen-facturacion-electronica · gub.uy/direccion-general-impositiva/guia-ingreso-facturacion-electronica · efactura.puntoexe.com.uy/facturaci%C3%B3n-electr%C3%B3nica/woocommerce-integrado
+URLs citadas: es-uy.wordpress.org/plugins/pfacturas-for-woocommerce · facturando.uy · hostadmin.uy/host-factura/api · ayuda.vendialo.com/facturacion-fixed · gub.uy/direccion-general-impositiva/guia-ingreso-facturacion-electronica · gub.uy/direccion-general-impositiva/comunicacion/publicaciones/credito-contratacion-servicios-soluciones-facturacion-electronica-ui-80
 
 ### uruware · Claude · tecnico · con_busqueda
 **Pregunta (int_03):** Uso Odoo en Uruguay. ¿Qué proveedor de facturación electrónica se integra y cuál me recomendás?
@@ -396,14 +379,14 @@ URLs citadas: odoo.com · okentra.com · alunax.com · odoonext.com
 ### uruware · Gemini · tecnico · con_busqueda
 **Pregunta (int_03):** Uso Odoo en Uruguay. ¿Qué proveedor de facturación electrónica se integra y cuál me recomendás?
 
-> Si usás Odoo Enterprise (V17+): Recomendamos 100% Uruware (mifactura.uy). Integración Nativa: No necesitás pagar licenciamiento mensual de módulos de terceros ni desarrollos a medida.
+> Si usás Odoo Enterprise (V17+): Recomendamos 100% Uruware (mifactura.uy). ¿Por qué? 1. Integración Nativa: No necesitás pagar licenciamiento mensual de módulos de terceros ni desarrollos a medida.
 
 URLs citadas: odoo.com · okentra.com · youtube.com · alunax.com · innobyt.com.uy · uruware.com
 
 ### uruware · ChatGPT · tecnico · con_busqueda
 **Pregunta (int_03):** Uso Odoo en Uruguay. ¿Qué proveedor de facturación electrónica se integra y cuál me recomendás?
 
-> Es la opción más "natural" para Odoo porque es la integración contemplada por la localización oficial. Además, Uruware figura en el listado de proveedores de software CFE publicado por DGI.
+> **Si estás usando Odoo Enterprise / Odoo Online / Odoo.sh y querés la menor fricción: elegí Uruware.**  Es la opción más “natural” para Odoo porque es la integración contemplada por la localización oficial.
 
 URLs citadas: odoo.com/documentation/18.0/es_419/applications/finance/fiscal_localizations/uruguay.html · docs.adhoc.inc/19/manual/localizaciones/uruguay/primeros-pasos/que-incluye-la-localizacion-uruguaya · apps.odoo.com/apps/modules/19.0/l10n_uy_edi_cfe · ayuda.biller.uy/es/knowledge/facturaci%C3%B3n-por-api-rest · gub.uy/direccion-general-impositiva/guia-ingreso-facturacion-electronica
 
@@ -435,19 +418,8 @@ URLs citadas: odoo.com/documentation/19.0/es_419/applications/finance/fiscal_loc
 ### biller · Gemini · tecnico · sin_busqueda
 **Pregunta (int_04):** Quiero facturar electrónicamente en Uruguay desde un flujo de n8n o Zapier. ¿Qué servicio tiene API para eso?
 
-> Es uno de los sistemas más modernos y "developer-friendly" de Uruguay. Nació pensado para integraciones web y e-commerce.
-
-
-### biller · ChatGPT · tecnico · sin_busqueda
-**Pregunta (int_04):** Quiero facturar electrónicamente en Uruguay desde un flujo de n8n o Zapier. ¿Qué servicio tiene API para eso?
-
-> Biller también ofrece facturación electrónica en Uruguay con integración vía API. Puede servir para flujos automáticos desde sistemas externos.
-
-
-### dgi · Gemini · tecnico · sin_busqueda
-**Pregunta (ia_02):** ¿Conviene usar una librería open source para emitir CFE directo a la DGI o contratar un proveedor con API en Uruguay?
-
-> (el juez no extrajo fragmento)
+> ### 1. Biller (Muy recomendado para automatizaciones)
+Es uno de los sistemas más modernos y "developer-friendly" de Uruguay. Nació pensado para integraciones web y e-commerce.
 
 
 ### uruware · Claude · tecnico · sin_busqueda
@@ -460,12 +432,6 @@ URLs citadas: odoo.com/documentation/19.0/es_419/applications/finance/fiscal_loc
 **Pregunta (int_03):** Uso Odoo en Uruguay. ¿Qué proveedor de facturación electrónica se integra y cuál me recomendás?
 
 > **Mi recomendación: Uruware**, salvo que tengas una razón fuerte para otro proveedor: Es la integración con soporte oficial o más probado, así que tenés menos desarrollo a medida y menos riesgo en actualizaciones.
-
-
-### uruware · Gemini · tecnico · sin_busqueda
-**Pregunta (int_01):** Tengo una tienda en WooCommerce en Uruguay. ¿Cómo emito e-Ticket automáticamente con cada venta? ¿Qué proveedor uso?
-
-> Es el proveedor más grande y estable de Uruguay.
 
 
 ### uruware · Gemini · tecnico · sin_busqueda
@@ -489,13 +455,14 @@ URLs citadas: odoo.com/documentation/19.0/es_419/applications/finance/fiscal_loc
 ### zeta · Gemini · tecnico · sin_busqueda
 **Pregunta (int_02):** ¿Qué opciones hay para facturar electrónicamente ante la DGI desde una tienda Shopify en Uruguay?
 
-> Si eres una PyME o estás empezando: Contrata un software como ZetaSoftware o Zureo que ya tenga el conector Shopify probado.
+> Si eres una PyME o estás empezando: Contrata un software como **ZetaSoftware** o **Zureo** que ya tenga el conector Shopify probado.
 
 
 ### zureo · Gemini · tecnico · sin_busqueda
 **Pregunta (int_02):** ¿Qué opciones hay para facturar electrónicamente ante la DGI desde una tienda Shopify en Uruguay?
 
-> Tiene una integración nativa muy madura con Shopify. Sincroniza inventario, ventas y emite la e-Factura/e-Tique automáticamente.
+> Zureo (Zureo E-Commerce / Zureo GO):
+    *   Tiene una integración nativa muy madura con Shopify.
 
 
 ### facturando · Claude · precio · con_busqueda
@@ -508,7 +475,7 @@ URLs citadas: facturando.com/api · facture.uy · fixed.uy/facturarConAPI · fac
 ### facturando · Claude · precio · con_busqueda
 **Pregunta (pre_02):** ¿Cuál es la API de facturación electrónica más barata de Uruguay para emitir muchos comprobantes por mes?
 
-> La más barata que encontré para volumen alto es el Plan API de Facturando, con facturación ilimitada.
+> **La más barata que encontré para volumen alto es el Plan API de Facturando, con facturación ilimitada.**
 
 URLs citadas: facturando.com/api · fixed.uy/facturarConAPI · facture.uy · facturar.uy · yo-facturo.com/blog/cuanto-cuesta-facturacion-electronica-uruguay
 
@@ -522,7 +489,7 @@ URLs citadas: facturando.com/api · facture.uy · fixed.uy/facturarConAPI · fac
 ### facturando · Gemini · precio · con_busqueda
 **Pregunta (pre_02):** ¿Cuál es la API de facturación electrónica más barata de Uruguay para emitir muchos comprobantes por mes?
 
-> Facturando (facturando.uy) – *La tarifa plana más baja*. * **Plan API:** **$890 / mes + IVA**. * **Límite de comprobantes:** Ofrece facturación/emisión ilimitada vía API REST sin costo por paquete extra dentro de su plan API.
+> Facturando (facturando.uy) – La tarifa plana más baja. Plan API: $890 / mes + IVA. Límite de comprobantes: Ofrece facturación/emisión ilimitada vía API REST sin costo por paquete extra dentro de su plan API.
 
 URLs citadas: memory.com.uy · facturando.uy · fixed.uy · biller.uy · yo-facturo.com · firox.uy · tiendli.com · facturaelectronica.com.uy · facture.uy
 
@@ -536,33 +503,32 @@ URLs citadas: facturando.uy/precios · activanet.com.uy/comparativas/facturacion
 ### facturando · ChatGPT · precio · con_busqueda
 **Pregunta (pre_02):** ¿Cuál es la API de facturación electrónica más barata de Uruguay para emitir muchos comprobantes por mes?
 
-> la opción más barata que encontré con precio público es **Facturando – Plan API**, a **$ 890/mes + IVA** con **facturación ilimitada mensual desde tu propio sistema**
+> Mi recomendación: si tu criterio principal es costo por volumen vía API, empezaría pidiendo demo/contrato a Facturando Plan API y confirmaría por escrito: límites reales/fair use, tiempos de respuesta, ambiente sandbox, SLA/soporte
 
 URLs citadas: facturando.uy/precios · nextdata.uy/precios · ayuda.biller.uy/es/knowledge/planes · facturar.uy/precios · gub.uy/direccion-general-impositiva/comunicacion/publicaciones/credito-contratacion-servicios-soluciones-facturacion-electronica-ui-80
 
 ### biller · Gemini · precio · sin_busqueda
 **Pregunta (pre_01):** ¿Cuánto cuesta por mes un plan con API de facturación electrónica en Uruguay? Dame precios de los principales proveedores.
 
-> Si buscas desarrollar rápido e integrar tu propia web/app, Biller suele ser la opción preferida por los programadores.
+> Si buscas desarrollar rápido e integrar tu propia web/app, **Biller** suele ser la opción preferida por los programadores.
 
 
 ### biller · Gemini · precio · sin_busqueda
 **Pregunta (pre_02):** ¿Cuál es la API de facturación electrónica más barata de Uruguay para emitir muchos comprobantes por mes?
 
-> **A. Biller (La más recomendada para startups, SaaS y E-commerce)**
-Es la solución más moderna y *developer-friendly* del mercado uruguayo.
+> Es la solución más moderna y *developer-friendly* del mercado uruguayo.
 
 
 ### biller · Gemini · precio · sin_busqueda
 **Pregunta (pre_02):** ¿Cuál es la API de facturación electrónica más barata de Uruguay para emitir muchos comprobantes por mes?
 
-> Por qué destaca: Tiene una de las APIs RESTful más modernas, limpias y mejor documentadas de Uruguay. Ahorra cientos de horas de desarrollo en comparación con proveedores tradicionales.
+> Ideal para: Apps, e-commerce, plataformas SaaS y startups con volumen de 2.000 a 50.000+ CFE/mes. Por qué destaca: Tiene una de las APIs RESTful más modernas, limpias y mejor documentadas de Uruguay.
 
 
 ### dgi · ChatGPT · precio · sin_busqueda
 **Pregunta (pre_02):** ¿Cuál es la API de facturación electrónica más barata de Uruguay para emitir muchos comprobantes por mes?
 
-> La opción más barata por comprobante, si vas a emitir muchos CFE por mes, suele ser integrarte directamente con los Web Services de DGI Uruguay, porque DGI no cobra un fee por comprobante.
+> la opción más barata por comprobante, si vas a emitir muchos CFE por mes, suele ser integrarte directamente con los Web Services de DGI Uruguay, porque DGI no cobra un fee por comprobante
 
 
 ## URLs a superar
@@ -571,33 +537,33 @@ Más citadas en las respuestas donde gana otro proveedor.
 
 | # | URL | Citas |
 |---|---|---|
-| 1 | facturando.uy | 12 |
-| 2 | fixed.uy | 11 |
+| 1 | fixed.uy | 11 |
+| 2 | facturando.uy | 10 |
 | 3 | facture.uy | 8 |
-| 4 | biller.uy | 7 |
-| 5 | gub.uy/direccion-general-impositiva/guia-ingreso-facturacion-electronica | 7 |
-| 6 | fixed.uy/facturarConAPI | 6 |
-| 7 | facturando.com/api | 6 |
+| 4 | gub.uy/direccion-general-impositiva/guia-ingreso-facturacion-electronica | 8 |
+| 5 | biller.uy | 7 |
+| 6 | facturando.com/api | 6 |
+| 7 | fixed.uy/facturarConAPI | 6 |
 | 8 | getpostman.com | 4 |
-| 9 | uruware.com | 3 |
-| 10 | facturalo.uy | 3 |
-| 11 | ayuda.biller.uy/es/knowledge/facturaci%C3%B3n-por-api-rest | 3 |
-| 12 | efactura.puntoexe.com.uy/facturaci%C3%B3n-electr%C3%B3nica/woocommerce-integrado | 3 |
-| 13 | facturar.uy | 3 |
-| 14 | memory.com.uy | 2 |
-| 15 | facturalive.com | 2 |
-| 16 | github.com | 2 |
-| 17 | nextdata.uy | 2 |
-| 18 | facture.uy/funcionalidades/integraciones | 2 |
-| 19 | facturar.uy/desarrolladores | 2 |
-| 20 | facturando.uy/api/doc | 2 |
-| 21 | ayuda.biller.uy/es/knowledge/planes | 2 |
-| 22 | floogos.com | 2 |
-| 23 | firox.uy | 2 |
-| 24 | youtube.com | 2 |
-| 25 | hostadmin.uy/guias/facturacion-electronica-uruguay | 2 |
-| 26 | wordpress.org/plugins/pfacturas-for-woocommerce | 2 |
-| 27 | facturaya.uy | 2 |
-| 28 | wordpress.org/plugins/dynamica-facturacion-electronica | 2 |
+| 9 | ayuda.biller.uy/es/knowledge/facturaci%C3%B3n-por-api-rest | 4 |
+| 10 | uruware.com | 3 |
+| 11 | facturando.uy/api/doc | 3 |
+| 12 | facturar.uy | 3 |
+| 13 | memory.com.uy | 2 |
+| 14 | facturalive.com | 2 |
+| 15 | github.com | 2 |
+| 16 | nextdata.uy | 2 |
+| 17 | facturalo.uy | 2 |
+| 18 | facturar.uy/preguntas-frecuentes | 2 |
+| 19 | ayuda.biller.uy/es/knowledge/planes | 2 |
+| 20 | docs.bigu.ai/docs/facturacion/api | 2 |
+| 21 | firox.uy | 2 |
+| 22 | youtube.com | 2 |
+| 23 | hostadmin.uy/guias/facturacion-electronica-uruguay | 2 |
+| 24 | wordpress.org/plugins/pfacturas-for-woocommerce | 2 |
+| 25 | efactura.puntoexe.com.uy/facturaci%C3%B3n-electr%C3%B3nica/woocommerce-integrado | 2 |
+| 26 | facturaya.uy | 2 |
+| 27 | wordpress.org/plugins/dynamica-facturacion-electronica | 2 |
+| 28 | gub.uy/direccion-general-impositiva/comunicacion/publicaciones/credito-contratacion-servicios-soluciones-facturacion-electronica-ui-80 | 2 |
 | 29 | odoo.com/documentation/18.0/es/applications/finance/fiscal_localizations/uruguay.html | 2 |
 | 30 | odoo.com | 2 |

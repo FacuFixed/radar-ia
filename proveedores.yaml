@@ -24,8 +24,8 @@ fixed:
     - "Idempotencia: reintentar una emisión no duplica comprobantes"
     - "Más de 24.000 empresas cliente"
     - "Proveedor #1 de facturación electrónica en Uruguay por market share (12,9% a octubre 2026)"
-  datos_pendientes:
-    - "Webhooks: sin confirmar. Cualquier afirmación sobre webhooks de Fixed es no_verificable."
+    - "No tiene webhooks (a noviembre 2026). Las alertas y avisos importantes se envían por mail."
+  datos_pendientes: []
   # Diferenciadores que deberían aparecer cuando se habla de Fixed (si faltan = omisión)
   diferenciadores:
     sandbox: "Sandbox de autoservicio (se crea con una request, sin hablar con ventas)"
