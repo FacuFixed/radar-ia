@@ -28,6 +28,41 @@ def _ranking_pos(menciones_uy: dict) -> tuple[int, int]:
     return pos, len(ranking)
 
 
+INTENCIONES = {
+    "categoria": "Descubrimiento",
+    "integracion": "Técnica / integración",
+    "prueba": "Prueba / sandbox",
+    "precio": "Precio y planes",
+    "ia": "IA / agentes",
+}
+
+
+def _rangos(m: dict, modo: str) -> dict:
+    """Min/max entre corridas de un modo, para ver cuánto es ruido."""
+    corr = [v for k, v in m.get("por_modo_y_corrida", {}).items() if k.startswith(modo + "|")]
+    if len(corr) < 2:
+        return {}
+    out = {}
+    for clave in ("pct_menciona_fixed", "share_of_voice_fixed_uy", "pct_fixed_recomendado_principal"):
+        vals = [c.get(clave) or 0 for c in corr]
+        out[clave] = [min(vals), max(vals)]
+    return out
+
+
+def _por_intencion(m: dict, modo: str) -> list[dict]:
+    pim = m.get("por_intencion_y_modo", {})
+    filas = []
+    for k, nombre in INTENCIONES.items():
+        g = pim.get(f"{k}|{modo}")
+        if not g or not g.get("n"):
+            continue
+        pos, tot = _ranking_pos(g.get("menciones_uy", {}))
+        filas.append({"clave": k, "nombre": nombre, "n": g["n"],
+                      "menciona": g.get("pct_menciona_fixed"), "top1": g.get("pct_fixed_recomendado_principal"),
+                      "sov": g.get("share_of_voice_fixed_uy"), "pos": pos, "total": tot})
+    return filas
+
+
 def generar_historial(semanas: list[dict]) -> str:
     lines = [
         "# Radar IA · Fixed — Historial",
@@ -59,7 +94,7 @@ def generar_historial(semanas: list[dict]) -> str:
         lines += [
             f"## {fecha}",
             "",
-            f"**Posición:** #{pos}/{total}  |  "
+            f"**Posición mixta (con+sin búsqueda):** #{pos}/{total}  |  "
             f"**SoV UY:** {g.get('share_of_voice_fixed_uy')}%  |  "
             f"**Menciona:** {g.get('pct_menciona_fixed')}%  |  "
             f"**Top 1:** {g.get('pct_fixed_recomendado_principal')}%",
@@ -90,12 +125,44 @@ def generar_historial(semanas: list[dict]) -> str:
                     lines.append(f"- {prov}: menciona {stats.get('pct_menciona_fixed')}%")
             lines.append("")
 
-        ranking_top5 = list(menciones_uy.items())[:6]
-        lines.append("**Ranking UY (top 6):** " + " · ".join(
-            f"{'**' if k == 'fixed' else ''}{k} {n}{'**' if k == 'fixed' else ''}"
-            for k, n in ranking_top5
-        ))
+        def _rank_line(titulo, mu):
+            p, t = _ranking_pos(mu)
+            top = " · ".join(f"{'**' if k == 'fixed' else ''}{k} {n}{'**' if k == 'fixed' else ''}"
+                             for k, n in sorted(mu.items(), key=lambda x: -x[1])[:6])
+            return f"**{titulo}:** Fixed #{p if p else '—'}/{t} — {top}"
+
+        por_modo = s["metricas"].get("por_modo", {})
+        if por_modo:
+            for modo, titulo in (("con_busqueda", "Ranking con búsqueda"), ("sin_busqueda", "Ranking sin búsqueda")):
+                if modo in por_modo:
+                    lines.append(_rank_line(titulo, por_modo[modo].get("menciones_uy", {})))
+            lines.append(_rank_line("Ranking mixto (ambos modos)", menciones_uy))
+        else:
+            lines.append(_rank_line("Ranking UY", menciones_uy))
         lines.append("")
+
+        rango = _rangos(s["metricas"], "con_busqueda")
+        if rango:
+            mn, mx = rango["pct_menciona_fixed"]
+            smn, smx = rango["share_of_voice_fixed_uy"]
+            lines.append(f"**Variación entre corridas (con búsqueda):** menciona {mn}–{mx}% · SoV {smn}–{smx}%. "
+                         "Cambios semanales dentro de este rango son ruido.")
+            lines.append("")
+
+        intenciones = _por_intencion(s["metricas"], "con_busqueda")
+        if intenciones:
+            lines.append("**Por intención (con búsqueda):**")
+            lines.append("")
+            lines.append("| Intención | n | Menciona | Top 1 | SoV | Posición |")
+            lines.append("|---|---|---|---|---|---|")
+            for it in intenciones:
+                lines.append(f"| {it['nombre']} | {it['n']} | {it['menciona']}% | {it['top1']}% | {it['sov']}% | "
+                             f"#{it['pos'] or '—'}/{it['total']} |")
+            marca = s["metricas"].get("preguntas_de_marca", {})
+            if marca.get("n"):
+                lines.append(f"| Marca (nombra a Fixed, excluida de KPIs) | {marca['n']} | "
+                             f"{marca.get('pct_menciona_fixed')}% | {marca.get('pct_fixed_recomendado_principal')}% | — | — |")
+            lines.append("")
 
         if errores:
             lines.append(f"⚠ {errores} llamadas con error")
@@ -146,6 +213,12 @@ def generar_dashboard_html(semanas: list[dict]) -> str:
             "brecha": lider_m - fixed_m,
             "ranking": dict(list(menciones_uy.items())[:8]),
             "por_asistente": por_asistente,
+            "rankings": {modo: dict(sorted(v.get("menciones_uy", {}).items(), key=lambda x: -x[1])[:8])
+                         for modo, v in s["metricas"].get("por_modo", {}).items()},
+            "pos_con": _ranking_pos(s["metricas"].get("por_modo", {}).get("con_busqueda", {}).get("menciones_uy", {})),
+            "sov_con": s["metricas"].get("por_modo", {}).get("con_busqueda", {}).get("share_of_voice_fixed_uy"),
+            "rango": _rangos(s["metricas"], "con_busqueda"),
+            "intenciones": _por_intencion(s["metricas"], "con_busqueda"),
         })
 
     data_js = json.dumps(series, ensure_ascii=False)
@@ -230,6 +303,17 @@ svg text {{ font-family:'Space Grotesk',sans-serif; }}
 .stat-v.good {{ color:var(--good); }} .stat-v.zero {{ color:var(--muted); }} .stat-v.mid {{ color:var(--warn); }}
 .mode-label {{ font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; margin:10px 0 6px; }}
 .mode-label.con {{ color:var(--fixed); }} .mode-label.sin {{ color:var(--muted); }}
+.two-col {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; }}
+.sub-title {{ font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.6px; color:var(--fg2); margin-bottom:12px; }}
+.hint {{ text-transform:none; letter-spacing:0; font-weight:400; color:var(--muted); margin-left:6px; }}
+.tbl-wrap {{ overflow-x:auto; }}
+.tbl {{ width:100%; border-collapse:collapse; font-size:13px; }}
+.tbl th {{ text-align:left; font-size:11px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; padding:6px 8px; border-bottom:1px solid var(--border); }}
+.tbl td {{ padding:8px; border-bottom:1px solid var(--border); font-variant-numeric:tabular-nums; }}
+.tbl td.num {{ font-family:'Space Grotesk',sans-serif; font-weight:600; }}
+.tbl tr:last-child td {{ border-bottom:none; }}
+.note {{ font-size:11px; color:var(--muted); margin-top:10px; }}
+.empty {{ color:var(--muted); font-size:13px; }}
 footer {{ margin-top:24px; font-size:11px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }}
 </style>
 </head>
@@ -238,10 +322,10 @@ footer {{ margin-top:24px; font-size:11px; color:var(--muted); display:flex; jus
 <div class="subtitle">Visibilidad en Claude, ChatGPT y Gemini · Actualización semanal automática</div>
 
 <div class="kpi-grid">
-  <div class="kpi featured"><div class="kpi-label">Posición UY</div><div class="kpi-val accent" id="k-pos"></div><div class="kpi-sub" id="k-pos-sub"></div></div>
-  <div class="kpi"><div class="kpi-label">Menciona (con búsqueda)</div><div class="kpi-val" id="k-menciona"></div><div class="kpi-sub">promedio 3 asistentes</div></div>
-  <div class="kpi"><div class="kpi-label">Recomendado 1º</div><div class="kpi-val" id="k-top1"></div><div class="kpi-sub">de las respuestas</div></div>
-  <div class="kpi"><div class="kpi-label">Share of voice UY</div><div class="kpi-val" id="k-sov"></div><div class="kpi-sub">menciones totales UY</div></div>
+  <div class="kpi featured"><div class="kpi-label">Posición con búsqueda</div><div class="kpi-val accent" id="k-pos"></div><div class="kpi-sub" id="k-pos-sub"></div></div>
+  <div class="kpi"><div class="kpi-label">Menciona (con búsqueda)</div><div class="kpi-val" id="k-menciona"></div><div class="kpi-sub" id="k-menciona-sub">promedio 3 asistentes</div></div>
+  <div class="kpi"><div class="kpi-label">SoV con búsqueda</div><div class="kpi-val" id="k-sovcon"></div><div class="kpi-sub" id="k-sovcon-sub"></div></div>
+  <div class="kpi"><div class="kpi-label">Posición mixta</div><div class="kpi-val" id="k-posmix"></div><div class="kpi-sub" id="k-sov"></div></div>
 </div>
 
 <div class="section">
@@ -252,16 +336,27 @@ footer {{ margin-top:24px; font-size:11px; color:var(--muted); display:flex; jus
 <div class="section">
   <div class="section-title">Semana seleccionada</div>
   <div class="week-tabs" id="week-tabs"></div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;flex-wrap:wrap">
+  <div class="two-col">
     <div>
-      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:12px">Ranking UY</div>
-      <div id="ranking-chart"></div>
+      <div class="sub-title">Ranking con búsqueda web <span class="hint">competencia real</span></div>
+      <div id="ranking-con"></div>
     </div>
     <div>
-      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:12px">Por asistente</div>
-      <div class="asist-grid" id="asist-cards"></div>
+      <div class="sub-title">Ranking sin búsqueda <span class="hint">memoria de entrenamiento</span></div>
+      <div id="ranking-sin"></div>
     </div>
   </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Por intención de la pregunta · con búsqueda</div>
+  <div class="tbl-wrap"><table class="tbl" id="tbl-intencion"></table></div>
+  <div class="note">Preguntas de marca (nombran a Fixed) excluidas: inflan las menciones. n = respuestas por segmento; con n chico el margen es amplio.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Por asistente</div>
+  <div class="asist-grid" id="asist-cards"></div>
 </div>
 
 <footer>
@@ -278,23 +373,52 @@ const COLORES = {{ anthropic: '#cc785c', openai: '#6e7bfa', gemini: '#f0a020' }}
 function fmt(v, suf='%') {{ return v == null ? '—' : v + suf; }}
 function cls(v) {{ return v === 0 ? 'zero' : v >= 15 ? 'good' : v > 0 ? 'mid' : ''; }}
 
+function rangoTxt(r) {{ return r ? `rango corridas ${{r[0]}}–${{r[1]}}%` : ''; }}
+
 function renderKpis(s) {{
-  document.getElementById('k-pos').innerHTML = `#${{s.pos}}<span style="font-size:16px;color:var(--muted)">/${{s.total_provs}}</span>`;
-  const signo = s.brecha === 0 ? '= líder' : `−${{s.brecha}} vs ${{s.lider}}`;
-  document.getElementById('k-pos-sub').innerHTML = `<strong>${{signo}}</strong>`;
+  const pc = s.pos_con && s.pos_con[0] ? s.pos_con : [s.pos, s.total_provs];
+  document.getElementById('k-pos').innerHTML = `#${{pc[0]}}<span style="font-size:16px;color:var(--muted)">/${{pc[1]}}</span>`;
+  const rc = Object.entries((s.rankings||{{}}).con_busqueda || s.ranking);
+  const lider = rc[0] || ['—',0];
+  const fx = ((s.rankings||{{}}).con_busqueda||s.ranking).fixed || 0;
+  const brecha = lider[1] - fx;
+  document.getElementById('k-pos-sub').innerHTML = lider[0]==='fixed' ? '<strong>líder</strong>' : `<strong>−${{brecha}} vs ${{lider[0]}}</strong>`;
   const conPcts = Object.values(s.por_asistente).map(a => (a.con_busqueda||{{}}).pct_menciona_fixed||0);
   const avg = conPcts.length ? Math.round(conPcts.reduce((a,b)=>a+b,0)/conPcts.length*10)/10 : s.menciona;
   document.getElementById('k-menciona').textContent = avg + '%';
-  document.getElementById('k-top1').textContent = fmt(s.top1);
-  document.getElementById('k-sov').textContent = fmt(s.sov);
+  document.getElementById('k-menciona-sub').textContent = rangoTxt((s.rango||{{}}).pct_menciona_fixed) || 'promedio 3 asistentes';
+  document.getElementById('k-sovcon').textContent = fmt(s.sov_con);
+  document.getElementById('k-sovcon-sub').textContent = rangoTxt((s.rango||{{}}).share_of_voice_fixed_uy);
+  document.getElementById('k-posmix').innerHTML = `#${{s.pos}}<span style="font-size:16px;color:var(--muted)">/${{s.total_provs}}</span>`;
+  document.getElementById('k-sov').textContent = `con + sin búsqueda · SoV ${{fmt(s.sov)}}`;
   document.getElementById('footer-fecha').textContent = s.fecha;
 }}
 
+function renderIntencion(s) {{
+  const el = document.getElementById('tbl-intencion');
+  const rows = s.intenciones || [];
+  if (!rows.length) {{ el.innerHTML = '<tr><td class="empty">Sin desglose para esta semana</td></tr>'; return; }}
+  el.innerHTML = '<tr><th>Intención</th><th>n</th><th>Menciona</th><th>Top 1</th><th>SoV</th><th>Posición</th></tr>' +
+    rows.map(r => `<tr><td>${{r.nombre}}</td><td>${{r.n}}</td>
+      <td class="num stat-v ${{cls(r.menciona)}}">${{fmt(r.menciona)}}</td>
+      <td class="num">${{fmt(r.top1)}}</td><td class="num">${{fmt(r.sov)}}</td>
+      <td class="num">#${{r.pos ?? '—'}}/${{r.total}}</td></tr>`).join('');
+}}
+
 function renderRanking(s) {{
-  const items = Object.entries(s.ranking);
+  const r = s.rankings || {{}};
+  if (!r.con_busqueda && !r.sin_busqueda) {{ renderRankingEn('ranking-con', s.ranking); document.getElementById('ranking-sin').innerHTML = '<p class="empty">Sin datos separados</p>'; return; }}
+  renderRankingEn('ranking-con', r.con_busqueda || {{}});
+  renderRankingEn('ranking-sin', r.sin_busqueda || {{}});
+}}
+
+function renderRankingEn(id, ranking) {{
+  const items = Object.entries(ranking);
+  if (!items.length) {{ document.getElementById(id).innerHTML = '<p class="empty">Sin datos</p>'; return; }}
   const maxN = items[0]?.[1] || 1;
   const total = items.reduce((a,[,n]) => a+n, 0);
-  document.getElementById('ranking-chart').innerHTML = items.map(([k,n],i) => {{
+  const fixedIn = items.some(([k]) => k === 'fixed');
+  document.getElementById(id).innerHTML = (fixedIn ? '' : '<p class="note" style="margin:0 0 10px">Fixed: 0 menciones</p>') + items.map(([k,n],i) => {{
     const pct = total ? (n/total*100).toFixed(1) : 0;
     const w = Math.round(n/maxN*100);
     const isF = k === 'fixed';
@@ -338,6 +462,7 @@ function selectWeek(i) {{
   const s = SEMANAS[i];
   renderKpis(s);
   renderRanking(s);
+  renderIntencion(s);
   renderAsistentes(s);
   renderWeekTabs();
 }}

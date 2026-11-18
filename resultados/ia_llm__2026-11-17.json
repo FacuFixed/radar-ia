@@ -723,7 +723,519 @@
     "pregunta": "pre_01",
     "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-5.5 in organization org-8omVHgtLOXxCpClE4nAgM1Pi on tokens per min (TPM): Limit 1000000, Used 944450, Requested 58724. Please try again in 191ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}"
    }
-  ]
+  ],
+  "por_modo_y_corrida": {
+   "con_busqueda|1": {
+    "n": 44,
+    "pct_menciona_fixed": 75.0,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": 2.09,
+    "share_of_voice_fixed_uy": 20.8,
+    "pct_cita_dominio_fixed": 69.8,
+    "menciones_uy": {
+     "facturando": 34,
+     "fixed": 33,
+     "biller": 24,
+     "uruware": 12,
+     "efactura_uy": 9,
+     "pymo": 9,
+     "zureo": 9,
+     "memory": 7,
+     "sicfe": 7,
+     "zeta": 5,
+     "feu": 5,
+     "pfacturas": 3,
+     "factura_express": 1,
+     "facturalo": 1
+    },
+    "recomendado_principal": {
+     "pfacturas": 2,
+     "uruware": 2,
+     "facturando": 1,
+     "facturalo": 1,
+     "biller": 1
+    },
+    "menciones_terceros": {
+     "dgi": 5,
+     "odoo": 4,
+     "edicom": 1,
+     "yofacturo": 1,
+     "librerias": 1
+    },
+    "dominios_citados_top": {
+     "facturando": 66,
+     "fixed": 59,
+     "facture.uy": 36,
+     "dgi": 29,
+     "biller": 24,
+     "hostadmin.uy": 16,
+     "facturar.uy": 15,
+     "odoo": 15,
+     "librerias": 15,
+     "efactura_uy": 13
+    },
+    "errores_sobre_fixed": []
+   },
+   "con_busqueda|2": {
+    "n": 44,
+    "pct_menciona_fixed": 65.9,
+    "pct_fixed_recomendado_principal": 2.3,
+    "posicion_media_fixed": 2.24,
+    "share_of_voice_fixed_uy": 18.8,
+    "pct_cita_dominio_fixed": 64.3,
+    "menciones_uy": {
+     "facturando": 33,
+     "fixed": 29,
+     "biller": 21,
+     "uruware": 15,
+     "pymo": 9,
+     "feu": 8,
+     "zureo": 8,
+     "sicfe": 8,
+     "memory": 7,
+     "efactura_uy": 5,
+     "zeta": 4,
+     "pfacturas": 3,
+     "facturalo": 3,
+     "factura_express": 1
+    },
+    "recomendado_principal": {
+     "facturando": 4,
+     "uruware": 3,
+     "pfacturas": 1,
+     "yofacturo": 1,
+     "biller": 1,
+     "fixed": 1,
+     "facturalo": 1
+    },
+    "menciones_terceros": {
+     "dgi": 5,
+     "odoo": 5,
+     "yofacturo": 2,
+     "librerias": 1
+    },
+    "dominios_citados_top": {
+     "facturando": 63,
+     "fixed": 54,
+     "facture.uy": 34,
+     "dgi": 24,
+     "biller": 24,
+     "nextdata.uy": 21,
+     "yofacturo": 16,
+     "uruware": 15,
+     "odoo": 14,
+     "hostadmin.uy": 13
+    },
+    "errores_sobre_fixed": [
+     "Afirma que su API no usa webhooks; este dato no figura en los datos de referencia y se usa como desventaja principal",
+     "Afirma que Fixed declara más de 24.000 clientes; este dato no está en los datos de referencia y no puede verificarse con ellos",
+     "Afirma que tiene protección contra facturas duplicadas mediante reintentos ante fallos de conexión; este dato no está en los datos de referencia y no puede verificarse"
+    ]
+   },
+   "sin_busqueda|1": {
+    "n": 48,
+    "pct_menciona_fixed": 0.0,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": null,
+    "share_of_voice_fixed_uy": 0.0,
+    "pct_cita_dominio_fixed": null,
+    "menciones_uy": {
+     "uruware": 29,
+     "memory": 24,
+     "biller": 23,
+     "zureo": 19,
+     "sicfe": 15,
+     "zeta": 2,
+     "factura_express": 1
+    },
+    "recomendado_principal": {
+     "biller": 16,
+     "uruware": 7,
+     "dgi": 2,
+     "sicfe": 1,
+     "zeta": 1
+    },
+    "menciones_terceros": {
+     "odoo": 10,
+     "edicom": 3
+    },
+    "dominios_citados_top": {},
+    "errores_sobre_fixed": []
+   },
+   "sin_busqueda|2": {
+    "n": 48,
+    "pct_menciona_fixed": 0.0,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": null,
+    "share_of_voice_fixed_uy": 0.0,
+    "pct_cita_dominio_fixed": null,
+    "menciones_uy": {
+     "uruware": 33,
+     "biller": 23,
+     "memory": 19,
+     "zureo": 17,
+     "sicfe": 13,
+     "zeta": 3,
+     "feu": 1,
+     "efactura_uy": 1
+    },
+    "recomendado_principal": {
+     "biller": 12,
+     "uruware": 6,
+     "zureo": 2,
+     "dgi": 1
+    },
+    "menciones_terceros": {
+     "odoo": 12,
+     "edicom": 4
+    },
+    "dominios_citados_top": {},
+    "errores_sobre_fixed": []
+   }
+  },
+  "por_intencion_y_modo": {
+   "categoria|con_busqueda": {
+    "n": 26,
+    "pct_menciona_fixed": 88.5,
+    "pct_fixed_recomendado_principal": 3.8,
+    "posicion_media_fixed": 2.3,
+    "share_of_voice_fixed_uy": 21.9,
+    "pct_cita_dominio_fixed": 87.5,
+    "menciones_uy": {
+     "fixed": 23,
+     "facturando": 23,
+     "biller": 15,
+     "uruware": 9,
+     "efactura_uy": 7,
+     "pymo": 7,
+     "sicfe": 7,
+     "zureo": 4,
+     "feu": 4,
+     "memory": 4,
+     "zeta": 2
+    },
+    "recomendado_principal": {
+     "facturando": 2,
+     "biller": 1,
+     "fixed": 1
+    },
+    "menciones_terceros": {
+     "dgi": 5,
+     "odoo": 2,
+     "edicom": 1
+    },
+    "dominios_citados_top": {
+     "facturando": 48,
+     "fixed": 42,
+     "facture.uy": 26,
+     "biller": 19,
+     "efactura_uy": 16,
+     "facturu.com": 15,
+     "dgi": 15,
+     "pymo": 12,
+     "uruware": 10,
+     "facturar.uy": 10
+    },
+    "errores_sobre_fixed": [
+     "Afirma que su API no usa webhooks; este dato no figura en los datos de referencia y se usa como desventaja principal",
+     "Afirma que Fixed declara más de 24.000 clientes; este dato no está en los datos de referencia y no puede verificarse con ellos",
+     "Afirma que tiene protección contra facturas duplicadas mediante reintentos ante fallos de conexión; este dato no está en los datos de referencia y no puede verificarse"
+    ]
+   },
+   "categoria|sin_busqueda": {
+    "n": 30,
+    "pct_menciona_fixed": 0.0,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": null,
+    "share_of_voice_fixed_uy": 0.0,
+    "pct_cita_dominio_fixed": null,
+    "menciones_uy": {
+     "uruware": 21,
+     "biller": 16,
+     "memory": 16,
+     "zureo": 10,
+     "sicfe": 9,
+     "zeta": 1,
+     "feu": 1
+    },
+    "recomendado_principal": {
+     "biller": 11,
+     "uruware": 5,
+     "sicfe": 1
+    },
+    "menciones_terceros": {
+     "edicom": 4,
+     "odoo": 3
+    },
+    "dominios_citados_top": {},
+    "errores_sobre_fixed": []
+   },
+   "ia|con_busqueda": {
+    "n": 12,
+    "pct_menciona_fixed": 25.0,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": 2.33,
+    "share_of_voice_fixed_uy": 15.0,
+    "pct_cita_dominio_fixed": 27.3,
+    "menciones_uy": {
+     "facturando": 4,
+     "biller": 3,
+     "fixed": 3,
+     "pymo": 3,
+     "uruware": 3,
+     "memory": 2,
+     "zureo": 1,
+     "facturalo": 1
+    },
+    "recomendado_principal": {
+     "yofacturo": 1
+    },
+    "menciones_terceros": {
+     "yofacturo": 2,
+     "librerias": 2,
+     "dgi": 2
+    },
+    "dominios_citados_top": {
+     "librerias": 11,
+     "yofacturo": 11,
+     "dgi": 10,
+     "glama.ai": 9,
+     "nextdata.uy": 8,
+     "facturando": 5,
+     "estudiozurbriggen.com": 5,
+     "gosocket.net": 4,
+     "fixed": 3,
+     "llbsolutions.com": 3
+    },
+    "errores_sobre_fixed": []
+   },
+   "ia|sin_busqueda": {
+    "n": 12,
+    "pct_menciona_fixed": 0.0,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": null,
+    "share_of_voice_fixed_uy": 0.0,
+    "pct_cita_dominio_fixed": null,
+    "menciones_uy": {
+     "zureo": 5,
+     "uruware": 4,
+     "memory": 4,
+     "biller": 3,
+     "sicfe": 2
+    },
+    "recomendado_principal": {
+     "biller": 1
+    },
+    "menciones_terceros": {
+     "odoo": 3,
+     "edicom": 1
+    },
+    "dominios_citados_top": {},
+    "errores_sobre_fixed": []
+   },
+   "integracion|con_busqueda": {
+    "n": 24,
+    "pct_menciona_fixed": 50.0,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": 2.67,
+    "share_of_voice_fixed_uy": 14.0,
+    "pct_cita_dominio_fixed": 41.7,
+    "menciones_uy": {
+     "facturando": 18,
+     "fixed": 12,
+     "biller": 12,
+     "uruware": 8,
+     "zureo": 7,
+     "pfacturas": 6,
+     "efactura_uy": 6,
+     "facturalo": 3,
+     "memory": 3,
+     "zeta": 3,
+     "pymo": 2,
+     "feu": 2,
+     "factura_express": 2,
+     "sicfe": 2
+    },
+    "recomendado_principal": {
+     "uruware": 5,
+     "pfacturas": 3,
+     "facturalo": 2,
+     "facturando": 1
+    },
+    "menciones_terceros": {
+     "odoo": 7,
+     "dgi": 2,
+     "yofacturo": 1
+    },
+    "dominios_citados_top": {
+     "facturando": 34,
+     "odoo": 27,
+     "dgi": 23,
+     "fixed": 18,
+     "hostadmin.uy": 14,
+     "wordpress.org": 10,
+     "facturaya.uy": 8,
+     "firox.uy": 8,
+     "efactura.puntoexe.com.uy": 7,
+     "biller": 7
+    },
+    "errores_sobre_fixed": []
+   },
+   "integracion|sin_busqueda": {
+    "n": 24,
+    "pct_menciona_fixed": 0.0,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": null,
+    "share_of_voice_fixed_uy": 0.0,
+    "pct_cita_dominio_fixed": null,
+    "menciones_uy": {
+     "uruware": 16,
+     "memory": 11,
+     "zureo": 8,
+     "biller": 7,
+     "sicfe": 5,
+     "zeta": 3,
+     "factura_express": 1,
+     "efactura_uy": 1
+    },
+    "recomendado_principal": {
+     "uruware": 7,
+     "biller": 4,
+     "zeta": 1,
+     "zureo": 1
+    },
+    "menciones_terceros": {
+     "odoo": 10
+    },
+    "dominios_citados_top": {},
+    "errores_sobre_fixed": []
+   },
+   "precio|con_busqueda": {
+    "n": 11,
+    "pct_menciona_fixed": 81.8,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": 2.33,
+    "share_of_voice_fixed_uy": 16.4,
+    "pct_cita_dominio_fixed": 72.7,
+    "menciones_uy": {
+     "facturando": 11,
+     "fixed": 9,
+     "biller": 9,
+     "zureo": 5,
+     "memory": 5,
+     "zeta": 4,
+     "sicfe": 4,
+     "uruware": 4,
+     "pymo": 3,
+     "efactura_uy": 1
+    },
+    "recomendado_principal": {
+     "facturando": 2
+    },
+    "menciones_terceros": {},
+    "dominios_citados_top": {
+     "facturando": 28,
+     "facture.uy": 20,
+     "fixed": 16,
+     "biller": 10,
+     "yofacturo": 9,
+     "facturar.uy": 8,
+     "uruware": 6,
+     "pymo": 5,
+     "memory": 4,
+     "nextdata.uy": 3
+    },
+    "errores_sobre_fixed": []
+   },
+   "precio|sin_busqueda": {
+    "n": 12,
+    "pct_menciona_fixed": 0.0,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": null,
+    "share_of_voice_fixed_uy": 0.0,
+    "pct_cita_dominio_fixed": null,
+    "menciones_uy": {
+     "uruware": 9,
+     "zureo": 9,
+     "biller": 7,
+     "memory": 6,
+     "sicfe": 6,
+     "zeta": 1
+    },
+    "recomendado_principal": {
+     "biller": 3,
+     "dgi": 1
+    },
+    "menciones_terceros": {
+     "odoo": 3
+    },
+    "dominios_citados_top": {},
+    "errores_sobre_fixed": []
+   },
+   "prueba|con_busqueda": {
+    "n": 15,
+    "pct_menciona_fixed": 100.0,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": 1.4,
+    "share_of_voice_fixed_uy": 31.9,
+    "pct_cita_dominio_fixed": 100.0,
+    "menciones_uy": {
+     "fixed": 15,
+     "facturando": 11,
+     "feu": 7,
+     "biller": 6,
+     "pymo": 3,
+     "uruware": 3,
+     "sicfe": 2
+    },
+    "recomendado_principal": {
+     "biller": 1
+    },
+    "menciones_terceros": {
+     "dgi": 1
+    },
+    "dominios_citados_top": {
+     "fixed": 34,
+     "facture.uy": 21,
+     "facturando": 14,
+     "biller": 11,
+     "nextdata.uy": 9,
+     "feu": 5,
+     "hostadmin.uy": 5,
+     "facturalive.com": 5,
+     "librerias": 4,
+     "facturu.com": 4
+    },
+    "errores_sobre_fixed": []
+   },
+   "prueba|sin_busqueda": {
+    "n": 18,
+    "pct_menciona_fixed": 0.0,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": null,
+    "share_of_voice_fixed_uy": 0.0,
+    "pct_cita_dominio_fixed": null,
+    "menciones_uy": {
+     "biller": 13,
+     "uruware": 12,
+     "memory": 6,
+     "sicfe": 6,
+     "zureo": 4
+    },
+    "recomendado_principal": {
+     "biller": 9,
+     "dgi": 2,
+     "zureo": 1,
+     "uruware": 1
+    },
+    "menciones_terceros": {
+     "odoo": 3,
+     "edicom": 2
+    },
+    "dominios_citados_top": {},
+    "errores_sobre_fixed": []
+   }
+  }
  },
  "vs_semana_anterior": null
 }

@@ -47,7 +47,11 @@ def agregar(filas: list[dict], proveedores: dict) -> dict:
         por[("modelo", f"{f['proveedor']}|{f['modo']}")].append(f)
         por[("intencion", f["intencion"])].append(f)
         por[("modo", f["modo"])].append(f)
+        por[("corrida", f"{f['modo']}|{f.get('corrida', 1)}")].append(f)
+        por[("intencion_modo", f"{f['intencion']}|{f['modo']}")].append(f)
     return {
+        "por_modo_y_corrida": {k: _grupo(v, proveedores) for (t, k), v in sorted(por.items()) if t == "corrida"},
+        "por_intencion_y_modo": {k: _grupo(v, proveedores) for (t, k), v in sorted(por.items()) if t == "intencion_modo"},
         "general_sin_marca": _grupo(sin_marca, proveedores),
         "por_modelo_y_modo": {k: _grupo(v, proveedores) for (t, k), v in sorted(por.items()) if t == "modelo"},
         "por_intencion": {k: _grupo(v, proveedores) for (t, k), v in sorted(por.items()) if t == "intencion"},

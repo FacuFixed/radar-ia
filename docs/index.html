@@ -78,6 +78,17 @@ svg text { font-family:'Space Grotesk',sans-serif; }
 .stat-v.good { color:var(--good); } .stat-v.zero { color:var(--muted); } .stat-v.mid { color:var(--warn); }
 .mode-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; margin:10px 0 6px; }
 .mode-label.con { color:var(--fixed); } .mode-label.sin { color:var(--muted); }
+.two-col { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; }
+.sub-title { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.6px; color:var(--fg2); margin-bottom:12px; }
+.hint { text-transform:none; letter-spacing:0; font-weight:400; color:var(--muted); margin-left:6px; }
+.tbl-wrap { overflow-x:auto; }
+.tbl { width:100%; border-collapse:collapse; font-size:13px; }
+.tbl th { text-align:left; font-size:11px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; padding:6px 8px; border-bottom:1px solid var(--border); }
+.tbl td { padding:8px; border-bottom:1px solid var(--border); font-variant-numeric:tabular-nums; }
+.tbl td.num { font-family:'Space Grotesk',sans-serif; font-weight:600; }
+.tbl tr:last-child td { border-bottom:none; }
+.note { font-size:11px; color:var(--muted); margin-top:10px; }
+.empty { color:var(--muted); font-size:13px; }
 footer { margin-top:24px; font-size:11px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
 </style>
 </head>
@@ -86,10 +97,10 @@ footer { margin-top:24px; font-size:11px; color:var(--muted); display:flex; just
 <div class="subtitle">Visibilidad en Claude, ChatGPT y Gemini · Actualización semanal automática</div>
 
 <div class="kpi-grid">
-  <div class="kpi featured"><div class="kpi-label">Posición UY</div><div class="kpi-val accent" id="k-pos"></div><div class="kpi-sub" id="k-pos-sub"></div></div>
-  <div class="kpi"><div class="kpi-label">Menciona (con búsqueda)</div><div class="kpi-val" id="k-menciona"></div><div class="kpi-sub">promedio 3 asistentes</div></div>
-  <div class="kpi"><div class="kpi-label">Recomendado 1º</div><div class="kpi-val" id="k-top1"></div><div class="kpi-sub">de las respuestas</div></div>
-  <div class="kpi"><div class="kpi-label">Share of voice UY</div><div class="kpi-val" id="k-sov"></div><div class="kpi-sub">menciones totales UY</div></div>
+  <div class="kpi featured"><div class="kpi-label">Posición con búsqueda</div><div class="kpi-val accent" id="k-pos"></div><div class="kpi-sub" id="k-pos-sub"></div></div>
+  <div class="kpi"><div class="kpi-label">Menciona (con búsqueda)</div><div class="kpi-val" id="k-menciona"></div><div class="kpi-sub" id="k-menciona-sub">promedio 3 asistentes</div></div>
+  <div class="kpi"><div class="kpi-label">SoV con búsqueda</div><div class="kpi-val" id="k-sovcon"></div><div class="kpi-sub" id="k-sovcon-sub"></div></div>
+  <div class="kpi"><div class="kpi-label">Posición mixta</div><div class="kpi-val" id="k-posmix"></div><div class="kpi-sub" id="k-sov"></div></div>
 </div>
 
 <div class="section">
@@ -100,16 +111,27 @@ footer { margin-top:24px; font-size:11px; color:var(--muted); display:flex; just
 <div class="section">
   <div class="section-title">Semana seleccionada</div>
   <div class="week-tabs" id="week-tabs"></div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;flex-wrap:wrap">
+  <div class="two-col">
     <div>
-      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:12px">Ranking UY</div>
-      <div id="ranking-chart"></div>
+      <div class="sub-title">Ranking con búsqueda web <span class="hint">competencia real</span></div>
+      <div id="ranking-con"></div>
     </div>
     <div>
-      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:12px">Por asistente</div>
-      <div class="asist-grid" id="asist-cards"></div>
+      <div class="sub-title">Ranking sin búsqueda <span class="hint">memoria de entrenamiento</span></div>
+      <div id="ranking-sin"></div>
     </div>
   </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Por intención de la pregunta · con búsqueda</div>
+  <div class="tbl-wrap"><table class="tbl" id="tbl-intencion"></table></div>
+  <div class="note">Preguntas de marca (nombran a Fixed) excluidas: inflan las menciones. n = respuestas por segmento; con n chico el margen es amplio.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Por asistente</div>
+  <div class="asist-grid" id="asist-cards"></div>
 </div>
 
 <footer>
@@ -118,7 +140,7 @@ footer { margin-top:24px; font-size:11px; color:var(--muted); display:flex; just
 </footer>
 
 <script>
-const SEMANAS = [{"fecha": "2026-11-17", "pos": 4, "total_provs": 14, "sov": 11.6, "menciona": 33.7, "top1": 0.5, "pos_media": 2.16, "lider": "biller", "lider_m": 91, "fixed_m": 62, "brecha": 29, "ranking": {"biller": 91, "uruware": 89, "facturando": 67, "fixed": 62, "memory": 57, "zureo": 53, "sicfe": 43, "pymo": 18}, "por_asistente": {"anthropic": {"con_busqueda": {"n": 32, "pct_menciona_fixed": 84.4, "pct_fixed_recomendado_principal": 0.0, "posicion_media_fixed": 1.93, "share_of_voice_fixed_uy": 22.3, "pct_cita_dominio_fixed": 90.0, "menciones_uy": {"fixed": 27, "facturando": 25, "pymo": 16, "efactura_uy": 12, "zureo": 11, "feu": 10, "uruware": 6, "memory": 6, "biller": 4, "zeta": 2, "pfacturas": 2}, "recomendado_principal": {"pfacturas": 2, "uruware": 2, "yofacturo": 1}, "menciones_terceros": {"dgi": 3, "odoo": 3, "yofacturo": 3, "librerias": 2, "edicom": 1}, "dominios_citados_top": {"fixed": 75, "facturando": 62, "facture.uy": 43, "facturu.com": 24, "pymo": 22, "efactura_uy": 21, "yofacturo": 19, "hostadmin.uy": 19, "facturar.uy": 14, "feu": 11}, "errores_sobre_fixed": ["Afirma que su API no usa webhooks; este dato no figura en los datos de referencia y se usa como desventaja principal"]}, "sin_busqueda": {"n": 32, "pct_menciona_fixed": 0.0, "pct_fixed_recomendado_principal": 0.0, "posicion_media_fixed": null, "share_of_voice_fixed_uy": 0.0, "pct_cita_dominio_fixed": null, "menciones_uy": {"biller": 21, "uruware": 21, "zureo": 6, "memory": 3}, "recomendado_principal": {"biller": 9, "uruware": 2}, "menciones_terceros": {"odoo": 15, "edicom": 5}, "dominios_citados_top": {}, "errores_sobre_fixed": []}}, "gemini": {"con_busqueda": {"n": 32, "pct_menciona_fixed": 65.6, "pct_fixed_recomendado_principal": 3.1, "posicion_media_fixed": 2.24, "share_of_voice_fixed_uy": 15.9, "pct_cita_dominio_fixed": 64.5, "menciones_uy": {"biller": 26, "facturando": 25, "fixed": 21, "uruware": 19, "sicfe": 14, "memory": 7, "zeta": 6, "zureo": 5, "facturalo": 4, "pfacturas": 2, "pymo": 1, "feu": 1, "efactura_uy": 1}, "recomendado_principal": {"biller": 2, "facturalo": 2, "uruware": 2, "fixed": 1}, "menciones_terceros": {"odoo": 4}, "dominios_citados_top": {"facturando": 43, "biller": 34, "fixed": 28, "nextdata.uy": 21, "facture.uy": 20, "uruware": 19, "odoo": 14, "librerias": 12, "dgi": 9, "dynamica.com.uy": 8}, "errores_sobre_fixed": ["Afirma que tiene protección contra facturas duplicadas mediante reintentos ante fallos de conexión; este dato no está en los datos de referencia y no puede verificarse"]}, "sin_busqueda": {"n": 32, "pct_menciona_fixed": 0.0, "pct_fixed_recomendado_principal": 0.0, "posicion_media_fixed": null, "share_of_voice_fixed_uy": 0.0, "pct_cita_dominio_fixed": null, "menciones_uy": {"sicfe": 22, "uruware": 20, "biller": 19, "memory": 19, "zureo": 14, "zeta": 4, "feu": 1, "efactura_uy": 1}, "recomendado_principal": {"biller": 17, "uruware": 5, "sicfe": 1, "zeta": 1, "zureo": 1}, "menciones_terceros": {"odoo": 5}, "dominios_citados_top": {}, "errores_sobre_fixed": []}}, "openai": {"con_busqueda": {"n": 24, "pct_menciona_fixed": 58.3, "pct_fixed_recomendado_principal": 0.0, "posicion_media_fixed": 2.5, "share_of_voice_fixed_uy": 23.3, "pct_cita_dominio_fixed": 41.7, "menciones_uy": {"facturando": 17, "biller": 15, "fixed": 14, "pfacturas": 2, "uruware": 2, "factura_express": 2, "feu": 2, "efactura_uy": 1, "zeta": 1, "zureo": 1, "sicfe": 1, "memory": 1, "pymo": 1}, "recomendado_principal": {"facturando": 5, "pfacturas": 1, "uruware": 1}, "menciones_terceros": {"dgi": 7, "odoo": 2}, "dominios_citados_top": {"dgi": 44, "facturando": 24, "facturar.uy": 14, "nextdata.uy": 13, "biller": 13, "fixed": 10, "facture.uy": 7, "odoo": 6, "es-uy.wordpress.org": 5, "docs.bigu.ai": 3}, "errores_sobre_fixed": ["Afirma que Fixed declara más de 24.000 clientes; este dato no está en los datos de referencia y no puede verificarse con ellos"]}, "sin_busqueda": {"n": 32, "pct_menciona_fixed": 0.0, "pct_fixed_recomendado_principal": 0.0, "posicion_media_fixed": null, "share_of_voice_fixed_uy": 0.0, "pct_cita_dominio_fixed": null, "menciones_uy": {"memory": 21, "uruware": 21, "zureo": 16, "sicfe": 6, "biller": 6, "factura_express": 1, "zeta": 1}, "recomendado_principal": {"uruware": 6, "dgi": 3, "biller": 2, "zureo": 1}, "menciones_terceros": {"edicom": 2, "odoo": 2}, "dominios_citados_top": {}, "errores_sobre_fixed": []}}}}];
+const SEMANAS = [{"fecha": "2026-11-17", "pos": 4, "total_provs": 14, "sov": 11.6, "menciona": 33.7, "top1": 0.5, "pos_media": 2.16, "lider": "biller", "lider_m": 91, "fixed_m": 62, "brecha": 29, "ranking": {"biller": 91, "uruware": 89, "facturando": 67, "fixed": 62, "memory": 57, "zureo": 53, "sicfe": 43, "pymo": 18}, "por_asistente": {"anthropic": {"con_busqueda": {"n": 32, "pct_menciona_fixed": 84.4, "pct_fixed_recomendado_principal": 0.0, "posicion_media_fixed": 1.93, "share_of_voice_fixed_uy": 22.3, "pct_cita_dominio_fixed": 90.0, "menciones_uy": {"fixed": 27, "facturando": 25, "pymo": 16, "efactura_uy": 12, "zureo": 11, "feu": 10, "uruware": 6, "memory": 6, "biller": 4, "zeta": 2, "pfacturas": 2}, "recomendado_principal": {"pfacturas": 2, "uruware": 2, "yofacturo": 1}, "menciones_terceros": {"dgi": 3, "odoo": 3, "yofacturo": 3, "librerias": 2, "edicom": 1}, "dominios_citados_top": {"fixed": 75, "facturando": 62, "facture.uy": 43, "facturu.com": 24, "pymo": 22, "efactura_uy": 21, "yofacturo": 19, "hostadmin.uy": 19, "facturar.uy": 14, "feu": 11}, "errores_sobre_fixed": ["Afirma que su API no usa webhooks; este dato no figura en los datos de referencia y se usa como desventaja principal"]}, "sin_busqueda": {"n": 32, "pct_menciona_fixed": 0.0, "pct_fixed_recomendado_principal": 0.0, "posicion_media_fixed": null, "share_of_voice_fixed_uy": 0.0, "pct_cita_dominio_fixed": null, "menciones_uy": {"biller": 21, "uruware": 21, "zureo": 6, "memory": 3}, "recomendado_principal": {"biller": 9, "uruware": 2}, "menciones_terceros": {"odoo": 15, "edicom": 5}, "dominios_citados_top": {}, "errores_sobre_fixed": []}}, "gemini": {"con_busqueda": {"n": 32, "pct_menciona_fixed": 65.6, "pct_fixed_recomendado_principal": 3.1, "posicion_media_fixed": 2.24, "share_of_voice_fixed_uy": 15.9, "pct_cita_dominio_fixed": 64.5, "menciones_uy": {"biller": 26, "facturando": 25, "fixed": 21, "uruware": 19, "sicfe": 14, "memory": 7, "zeta": 6, "zureo": 5, "facturalo": 4, "pfacturas": 2, "pymo": 1, "feu": 1, "efactura_uy": 1}, "recomendado_principal": {"biller": 2, "facturalo": 2, "uruware": 2, "fixed": 1}, "menciones_terceros": {"odoo": 4}, "dominios_citados_top": {"facturando": 43, "biller": 34, "fixed": 28, "nextdata.uy": 21, "facture.uy": 20, "uruware": 19, "odoo": 14, "librerias": 12, "dgi": 9, "dynamica.com.uy": 8}, "errores_sobre_fixed": ["Afirma que tiene protección contra facturas duplicadas mediante reintentos ante fallos de conexión; este dato no está en los datos de referencia y no puede verificarse"]}, "sin_busqueda": {"n": 32, "pct_menciona_fixed": 0.0, "pct_fixed_recomendado_principal": 0.0, "posicion_media_fixed": null, "share_of_voice_fixed_uy": 0.0, "pct_cita_dominio_fixed": null, "menciones_uy": {"sicfe": 22, "uruware": 20, "biller": 19, "memory": 19, "zureo": 14, "zeta": 4, "feu": 1, "efactura_uy": 1}, "recomendado_principal": {"biller": 17, "uruware": 5, "sicfe": 1, "zeta": 1, "zureo": 1}, "menciones_terceros": {"odoo": 5}, "dominios_citados_top": {}, "errores_sobre_fixed": []}}, "openai": {"con_busqueda": {"n": 24, "pct_menciona_fixed": 58.3, "pct_fixed_recomendado_principal": 0.0, "posicion_media_fixed": 2.5, "share_of_voice_fixed_uy": 23.3, "pct_cita_dominio_fixed": 41.7, "menciones_uy": {"facturando": 17, "biller": 15, "fixed": 14, "pfacturas": 2, "uruware": 2, "factura_express": 2, "feu": 2, "efactura_uy": 1, "zeta": 1, "zureo": 1, "sicfe": 1, "memory": 1, "pymo": 1}, "recomendado_principal": {"facturando": 5, "pfacturas": 1, "uruware": 1}, "menciones_terceros": {"dgi": 7, "odoo": 2}, "dominios_citados_top": {"dgi": 44, "facturando": 24, "facturar.uy": 14, "nextdata.uy": 13, "biller": 13, "fixed": 10, "facture.uy": 7, "odoo": 6, "es-uy.wordpress.org": 5, "docs.bigu.ai": 3}, "errores_sobre_fixed": ["Afirma que Fixed declara más de 24.000 clientes; este dato no está en los datos de referencia y no puede verificarse con ellos"]}, "sin_busqueda": {"n": 32, "pct_menciona_fixed": 0.0, "pct_fixed_recomendado_principal": 0.0, "posicion_media_fixed": null, "share_of_voice_fixed_uy": 0.0, "pct_cita_dominio_fixed": null, "menciones_uy": {"memory": 21, "uruware": 21, "zureo": 16, "sicfe": 6, "biller": 6, "factura_express": 1, "zeta": 1}, "recomendado_principal": {"uruware": 6, "dgi": 3, "biller": 2, "zureo": 1}, "menciones_terceros": {"edicom": 2, "odoo": 2}, "dominios_citados_top": {}, "errores_sobre_fixed": []}}}, "rankings": {"con_busqueda": {"facturando": 67, "fixed": 62, "biller": 45, "uruware": 27, "pymo": 18, "zureo": 17, "sicfe": 15, "efactura_uy": 14}, "sin_busqueda": {"uruware": 62, "biller": 46, "memory": 43, "zureo": 36, "sicfe": 28, "zeta": 5, "factura_express": 1, "feu": 1}}, "pos_con": [2, 14], "sov_con": 19.8, "rango": {"pct_menciona_fixed": [65.9, 75.0], "share_of_voice_fixed_uy": [18.8, 20.8], "pct_fixed_recomendado_principal": [0, 2.3]}, "intenciones": [{"clave": "categoria", "nombre": "Descubrimiento", "n": 26, "menciona": 88.5, "top1": 3.8, "sov": 21.9, "pos": 1, "total": 11}, {"clave": "integracion", "nombre": "Técnica / integración", "n": 24, "menciona": 50.0, "top1": 0.0, "sov": 14.0, "pos": 2, "total": 14}, {"clave": "prueba", "nombre": "Prueba / sandbox", "n": 15, "menciona": 100.0, "top1": 0.0, "sov": 31.9, "pos": 1, "total": 7}, {"clave": "precio", "nombre": "Precio y planes", "n": 11, "menciona": 81.8, "top1": 0.0, "sov": 16.4, "pos": 2, "total": 10}, {"clave": "ia", "nombre": "IA / agentes", "n": 12, "menciona": 25.0, "top1": 0.0, "sov": 15.0, "pos": 3, "total": 8}]}];
 let selIdx = SEMANAS.length - 1;
 
 const COLORES = { anthropic: '#cc785c', openai: '#6e7bfa', gemini: '#f0a020' };
@@ -126,23 +148,52 @@ const COLORES = { anthropic: '#cc785c', openai: '#6e7bfa', gemini: '#f0a020' };
 function fmt(v, suf='%') { return v == null ? '—' : v + suf; }
 function cls(v) { return v === 0 ? 'zero' : v >= 15 ? 'good' : v > 0 ? 'mid' : ''; }
 
+function rangoTxt(r) { return r ? `rango corridas ${r[0]}–${r[1]}%` : ''; }
+
 function renderKpis(s) {
-  document.getElementById('k-pos').innerHTML = `#${s.pos}<span style="font-size:16px;color:var(--muted)">/${s.total_provs}</span>`;
-  const signo = s.brecha === 0 ? '= líder' : `−${s.brecha} vs ${s.lider}`;
-  document.getElementById('k-pos-sub').innerHTML = `<strong>${signo}</strong>`;
+  const pc = s.pos_con && s.pos_con[0] ? s.pos_con : [s.pos, s.total_provs];
+  document.getElementById('k-pos').innerHTML = `#${pc[0]}<span style="font-size:16px;color:var(--muted)">/${pc[1]}</span>`;
+  const rc = Object.entries((s.rankings||{}).con_busqueda || s.ranking);
+  const lider = rc[0] || ['—',0];
+  const fx = ((s.rankings||{}).con_busqueda||s.ranking).fixed || 0;
+  const brecha = lider[1] - fx;
+  document.getElementById('k-pos-sub').innerHTML = lider[0]==='fixed' ? '<strong>líder</strong>' : `<strong>−${brecha} vs ${lider[0]}</strong>`;
   const conPcts = Object.values(s.por_asistente).map(a => (a.con_busqueda||{}).pct_menciona_fixed||0);
   const avg = conPcts.length ? Math.round(conPcts.reduce((a,b)=>a+b,0)/conPcts.length*10)/10 : s.menciona;
   document.getElementById('k-menciona').textContent = avg + '%';
-  document.getElementById('k-top1').textContent = fmt(s.top1);
-  document.getElementById('k-sov').textContent = fmt(s.sov);
+  document.getElementById('k-menciona-sub').textContent = rangoTxt((s.rango||{}).pct_menciona_fixed) || 'promedio 3 asistentes';
+  document.getElementById('k-sovcon').textContent = fmt(s.sov_con);
+  document.getElementById('k-sovcon-sub').textContent = rangoTxt((s.rango||{}).share_of_voice_fixed_uy);
+  document.getElementById('k-posmix').innerHTML = `#${s.pos}<span style="font-size:16px;color:var(--muted)">/${s.total_provs}</span>`;
+  document.getElementById('k-sov').textContent = `con + sin búsqueda · SoV ${fmt(s.sov)}`;
   document.getElementById('footer-fecha').textContent = s.fecha;
 }
 
+function renderIntencion(s) {
+  const el = document.getElementById('tbl-intencion');
+  const rows = s.intenciones || [];
+  if (!rows.length) { el.innerHTML = '<tr><td class="empty">Sin desglose para esta semana</td></tr>'; return; }
+  el.innerHTML = '<tr><th>Intención</th><th>n</th><th>Menciona</th><th>Top 1</th><th>SoV</th><th>Posición</th></tr>' +
+    rows.map(r => `<tr><td>${r.nombre}</td><td>${r.n}</td>
+      <td class="num stat-v ${cls(r.menciona)}">${fmt(r.menciona)}</td>
+      <td class="num">${fmt(r.top1)}</td><td class="num">${fmt(r.sov)}</td>
+      <td class="num">#${r.pos ?? '—'}/${r.total}</td></tr>`).join('');
+}
+
 function renderRanking(s) {
-  const items = Object.entries(s.ranking);
+  const r = s.rankings || {};
+  if (!r.con_busqueda && !r.sin_busqueda) { renderRankingEn('ranking-con', s.ranking); document.getElementById('ranking-sin').innerHTML = '<p class="empty">Sin datos separados</p>'; return; }
+  renderRankingEn('ranking-con', r.con_busqueda || {});
+  renderRankingEn('ranking-sin', r.sin_busqueda || {});
+}
+
+function renderRankingEn(id, ranking) {
+  const items = Object.entries(ranking);
+  if (!items.length) { document.getElementById(id).innerHTML = '<p class="empty">Sin datos</p>'; return; }
   const maxN = items[0]?.[1] || 1;
   const total = items.reduce((a,[,n]) => a+n, 0);
-  document.getElementById('ranking-chart').innerHTML = items.map(([k,n],i) => {
+  const fixedIn = items.some(([k]) => k === 'fixed');
+  document.getElementById(id).innerHTML = (fixedIn ? '' : '<p class="note" style="margin:0 0 10px">Fixed: 0 menciones</p>') + items.map(([k,n],i) => {
     const pct = total ? (n/total*100).toFixed(1) : 0;
     const w = Math.round(n/maxN*100);
     const isF = k === 'fixed';
@@ -186,6 +237,7 @@ function selectWeek(i) {
   const s = SEMANAS[i];
   renderKpis(s);
   renderRanking(s);
+  renderIntencion(s);
   renderAsistentes(s);
   renderWeekTabs();
 }
