@@ -6,6 +6,72 @@ Evolución semanal de la visibilidad de Fixed en Claude, ChatGPT y Gemini. Gener
 
 ---
 
+## 2026-11-18
+
+**Descubrimiento con búsqueda (n=66)** · posición **#2/11** · líder facturando · brecha 5.3 pp de SoV (12 menciones)
+
+| Métrica | Valor (IC 95%) |
+|---|---|
+| Menciona a Fixed | 66.7% (54.7–76.8) |
+| Fixed en top 3 | 60.6% (48.5–71.5) |
+| Recomendado 1º | 15.6% (8.7–26.4) |
+| No elige ninguno | 60.9% (48.7–71.9) |
+| Share of voice UY | 19.6% (14.9–25.2) |
+| Puntaje por posición (0–100) | 47.7 |
+
+Por corrida: #1: menciona 60.6%, SoV 17.5% · #2: menciona 72.7%, SoV 21.6%
+
+**Ranking con búsqueda:** 1. facturando 56 (25%) · **2. fixed 44 (20%)** · 3. biller 30 (13%) · 4. uruware 18 (8%) · 5. pymo 16 (7%) · 6. efactura_uy 16 (7%) · 7. feu 15 (7%) · 8. sicfe 12 (5%) · 9. zureo 7 (3%) · 10. memory 6 (3%) · 11. zeta 5 (2%)
+
+**Ranking sin búsqueda (memoria del modelo), Fixed #— (no aparece):** 1. uruware 43 (28%) · 2. biller 39 (25%) · 3. memory 28 (18%) · 4. sicfe 21 (14%) · 5. zureo 15 (10%) · 6. zeta 6 (4%) · 7. efactura_uy 1 (1%) · 8. feu 1 (1%)
+
+**Por intención (con búsqueda):**
+
+| Intención | n | Menciona | Top 3 | Top 1 | No elige | SoV | Posición |
+|---|---|---|---|---|---|---|---|
+| Descubrimiento | 66 | 66.7% | 60.6% | 15.6% | 60.9% | 19.6% | #2/11 |
+| Comparación | 18 | 83.3% | 77.8% | 26.7% | 60.0% | 31.9% | #1/8 |
+| Técnico | 30 | 36.7% | 30.0% | 0.0% | 60.0% | 10.4% | #4/14 |
+| Precio | 12 | 75.0% | 75.0% | 0.0% | 54.5% | 18.0% | #2/11 |
+| Marca | 12 | 100.0% | 100.0% | 58.3% | 41.7% | 85.7% | #1/2 |
+| Todas sin marca | 126 | 62.7% | 57.1% | 11.7% | 60.0% | 18.5% | #2/14 |
+
+**Por asistente (descubrimiento):**
+
+| Asistente | Modo | n | Menciona | Top 3 | Top 1 | SoV |
+|---|---|---|---|---|---|---|
+| Claude | con busqueda | 22 | 90.9% (72.2–97.5) | 86.4% | 20.0% | 22.0% |
+| Gemini | con busqueda | 22 | 36.4% (19.7–57.0) | 27.3% | 0.0% | 10.3% |
+| ChatGPT | con busqueda | 22 | 72.7% (51.8–86.8) | 68.2% | 27.3% | 28.6% |
+| Claude | sin busqueda | 22 | 0.0% (0.0–14.9) | 0.0% | 0.0% | 0.0% |
+| Gemini | sin busqueda | 22 | 0.0% (0.0–14.9) | 0.0% | 0.0% | 0.0% |
+| ChatGPT | sin busqueda | 22 | 0.0% (0.0–14.9) | 0.0% | 0.0% | 0.0% |
+
+**Fuentes citadas (todas sin marca, con búsqueda):** 119 respuestas con citas; citan un dominio de Fixed: 65.5%. Por tipo: tercero 639, competidor 418, propio 181, oficial 104
+
+URLs de Fixed citadas: fixed.uy (75) · fixed.uy/facturarConAPI (60) · developers.fixed.uy (31) · developers.fixed.uy/referencia/ventas/crear-venta (5) · developers.fixed.uy/referencia/otros/crear-empresa-prueba (4) · developers.fixed.uy/conceptos/ambientes (2) · fixed.uy/&gsessionid=x4CjSc3otVJ5yr6JvNFq2bPj4Tni7vTSeztNynTcUqgKD0kkOA5E6w (1) · developers.fixed.uy/primeros-pasos (1) · developers.fixed.uy/conceptos/idempotencia (1) · developers.fixed.uy/referencia (1)
+
+**Exactitud sobre Fixed (sin marca, 78 respuestas que lo nombran):** incorrecto 8 · correcto no registrado 59 · no verificable 60
+- ❌ (Claude, ia_01) Plan API de $1.480 por mes sin contradicción directa; la respuesta atribuye $890/mes a Facturando, no a Fixed
+- ❌ (Claude, dev_03) El plan API figura a $ 1.626/mes.
+- ❌ (Gemini, cat_05) Costo adicional por factura excedente en el plan de Fixed es un dato correcto pero el resto no se contradice; no se detecta contradicción explícita
+- ❌ (Gemini, pru_01) Afirma que ofrece webhooks para recibir estados de CFE, pero Fixed no tiene webhooks.
+- ❌ (Gemini, pre_01) Sus planes de facturación general parten en los $514 UYU/mes
+- ❌ (Gemini, pre_01) El Plan Ilimitado cuesta ~$980 UYU + IVA / mes
+- ❌ (Gemini, mar_03) Fixed tiene un ambiente de pruebas fácil de migrar a producción, sin sandbox de autoservicio como dato de referencia.
+- ❌ (Gemini, mar_03) Fixed está homologada por la DGI pero no se menciona homologación incluida como diferenciador (esto es omisión, no error)
+Omisiones más frecuentes: lider (76), idempotencia (58), sandbox (51), precio (45), documentacion (42), homologacion (39)
+
+**Exactitud sobre Fixed (preguntas de marca, 12 respuestas que lo nombran):** incorrecto 3 · correcto no registrado 30 · no verificable 20
+- ❌ (Gemini, mar_01) Precio estándar de $1.480 UYU / mes (el dato de referencia dice $1.480 por mes + IVA, la moneda y la ausencia de IVA no coinciden)
+- ❌ (Gemini, mar_01) Costo por excedente de $0,10 UYU (la referencia dice $0,1 sin especificar moneda, pero el IVA no se menciona; se contradice al omitir el + IVA)
+- ❌ (Gemini, mar_01) Precio mensual estándar de $1.480 UYU / mes: el dato de referencia dice $1.480 + IVA, la respuesta omite el IVA pero el monto coincide
+Omisiones más frecuentes: idempotencia (12), lider (12), documentacion (7), sandbox (6), homologacion (5), precio (4)
+
+_Config: 23 preguntas, 2 corridas, modos con_busqueda, sin_busqueda, juez claude-haiku-5-5 v2. Modelos: claude-sonnet-5-5, gemini-3.6-flash, gpt-5.5-2026-04-23._
+
+---
+
 ## 2026-11-17
 
 _Reprocesada el 2026-11-18 (juez v2, alias fuertes/débiles, intenciones v2). Respuestas originales en `resultados/2026-11-17/respuestas.original.jsonl`._
