@@ -10,10 +10,9 @@ import os
 from pathlib import Path
 
 
-def subir(archivo: Path, carpeta_id: str) -> str:
+def _get_service():
     from google.oauth2.credentials import Credentials
     from googleapiclient.discovery import build
-    from googleapiclient.http import MediaFileUpload
 
     creds = Credentials(
         token=None,
@@ -21,11 +20,37 @@ def subir(archivo: Path, carpeta_id: str) -> str:
         client_id=os.environ["GOOGLE_OAUTH_CLIENT_ID"],
         client_secret=os.environ["GOOGLE_OAUTH_CLIENT_SECRET"],
         token_uri="https://oauth2.googleapis.com/token",
-        # drive.file no alcanza para escribir en una carpeta que la app no creó
         scopes=["https://www.googleapis.com/auth/drive"],
     )
-    svc = build("drive", "v3", credentials=creds, cache_discovery=False)
-    meta = {"name": archivo.name, "parents": [carpeta_id]}
-    media = MediaFileUpload(str(archivo), mimetype="application/json")
-    f = svc.files().create(body=meta, media_body=media, fields="id,webViewLink").execute()
+    return build("drive", "v3", credentials=creds, cache_discovery=False)
+
+
+def _upsert(svc, nombre: str, carpeta_id: str, archivo: Path, mimetype: str) -> str:
+    """Sube el archivo; si ya existe uno con ese nombre en la carpeta, lo reemplaza."""
+    from googleapiclient.http import MediaFileUpload
+
+    res = svc.files().list(
+        q=f"name='{nombre}' and '{carpeta_id}' in parents and trashed=false",
+        fields="files(id)",
+        pageSize=1,
+    ).execute()
+    existentes = res.get("files", [])
+    media = MediaFileUpload(str(archivo), mimetype=mimetype)
+    if existentes:
+        f = svc.files().update(
+            fileId=existentes[0]["id"], media_body=media, fields="id,webViewLink"
+        ).execute()
+    else:
+        meta = {"name": nombre, "parents": [carpeta_id]}
+        f = svc.files().create(body=meta, media_body=media, fields="id,webViewLink").execute()
     return f.get("webViewLink", f["id"])
+
+
+def subir(archivo: Path, carpeta_id: str) -> str:
+    svc = _get_service()
+    return _upsert(svc, archivo.name, carpeta_id, archivo, "application/json")
+
+
+def subir_historial(historial: Path, carpeta_id: str) -> str:
+    svc = _get_service()
+    return _upsert(svc, historial.name, carpeta_id, historial, "text/markdown")

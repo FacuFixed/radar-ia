@@ -172,9 +172,11 @@ def cmd_run(cfg, args):
         print(f"  dashboard: {docs / 'index.html'}")
 
     if cfg.get("drive", {}).get("habilitado") and not args.simular:
-        from .drive import subir
+        from .drive import subir, subir_historial
 
-        print("Drive:", subir(destino, cfg["drive"]["carpeta_id"]))
+        carpeta = cfg["drive"]["carpeta_id"]
+        print("Drive JSON:", subir(destino, carpeta))
+        print("Drive historial:", subir_historial(historial_md, carpeta))
     return 0
 
 
