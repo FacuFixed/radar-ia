@@ -21,6 +21,7 @@ import yaml
 
 from .clientes import crear_clientes
 from .extraer import Juez, detectar_por_alias, dominios_citados
+from .historial import _cargar_semanas, generar_historial, generar_dashboard_html
 from .metricas import agregar, comparar
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -50,6 +51,47 @@ def cmd_check(cfg, simular):
             ok = False
             print(f"[ERROR] {c.proveedor} ({c.modelo}): {e}")
     return 0 if ok else 1
+
+
+def _imprimir_resumen(g: dict, metricas: dict) -> None:
+    menciones = g.get("menciones_uy", {})
+    total = sum(menciones.values())
+    ranking = sorted(menciones.items(), key=lambda x: -x[1])
+    pos_fixed = next((i + 1 for i, (k, _) in enumerate(ranking) if k == "fixed"), None)
+    fixed_n = menciones.get("fixed", 0)
+
+    print(f"\n{'─'*48}")
+    print(f"  Fixed: menciona {g.get('pct_menciona_fixed')}% | "
+          f"top 1: {g.get('pct_fixed_recomendado_principal')}% | "
+          f"SoV UY: {g.get('share_of_voice_fixed_uy')}%")
+    if pos_fixed:
+        lider_n = ranking[0][1] if ranking else 0
+        brecha = lider_n - fixed_n
+        signo = "=" if brecha == 0 else (f"-{brecha}" if brecha > 0 else f"+{abs(brecha)}")
+        print(f"  Posición en ranking UY: #{pos_fixed} de {len(ranking)}  ({fixed_n} menciones, {signo} vs líder)")
+
+    print(f"\n  Ranking proveedores UY ({total} menciones totales):")
+    for i, (k, n) in enumerate(ranking, 1):
+        pct = round(100 * n / total, 1) if total else 0
+        marca = " ← Fixed" if k == "fixed" else ""
+        print(f"    {i:2}. {k:<20} {n:3} menciones  {pct:5.1f}%{marca}")
+
+    rec = g.get("recomendado_principal", {})
+    if rec:
+        print(f"\n  Recomendado como 1º (todas las respuestas):")
+        for k, n in sorted(rec.items(), key=lambda x: -x[1]):
+            marca = " ← Fixed" if k == "fixed" else ""
+            print(f"      {k:<20} {n:3} veces{marca}")
+
+    por_modelo = metricas.get("por_modelo_y_modo", {})
+    if por_modelo:
+        print(f"\n  Desglose por asistente (menciona % | top1 % | SoV %):")
+        for clave, s in sorted(por_modelo.items()):
+            proveedor = clave.split("|")[0]
+            print(f"    {proveedor:<12} {s.get('pct_menciona_fixed'):5.1f}%  |  "
+                  f"{s.get('pct_fixed_recomendado_principal'):5.1f}%  |  "
+                  f"{s.get('share_of_voice_fixed_uy'):5.1f}%")
+    print(f"{'─'*48}\n")
 
 
 def cmd_run(cfg, args):
@@ -116,8 +158,18 @@ def cmd_run(cfg, args):
     destino = RAIZ / cfg["carpeta_resultados"] / f"ia_llm__{fecha}.json"
     destino.write_text(json.dumps(resumen, ensure_ascii=False, indent=1), encoding="utf-8")
     g = metricas["general_sin_marca"]
-    print(f"\nListo: {destino}\n  menciona a Fixed: {g.get('pct_menciona_fixed')}% | recomendado 1º: "
-          f"{g.get('pct_fixed_recomendado_principal')}% | share of voice UY: {g.get('share_of_voice_fixed_uy')}%")
+    print(f"\nListo: {destino}")
+    _imprimir_resumen(g, metricas)
+
+    if not args.simular:
+        semanas = _cargar_semanas()
+        historial_md = RAIZ / "resultados" / "HISTORIAL.md"
+        historial_md.write_text(generar_historial(semanas), encoding="utf-8")
+        docs = RAIZ / "docs"
+        docs.mkdir(exist_ok=True)
+        (docs / "index.html").write_text(generar_dashboard_html(semanas), encoding="utf-8")
+        print(f"  historial: {historial_md}")
+        print(f"  dashboard: {docs / 'index.html'}")
 
     if cfg.get("drive", {}).get("habilitado") and not args.simular:
         from .drive import subir

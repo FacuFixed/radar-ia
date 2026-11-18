@@ -1,0 +1,729 @@
+{
+ "fecha": "2026-11-17",
+ "nota": "Respuestas obtenidas por API de cada asistente. Modo con_busqueda usa la búsqueda web del proveedor con ubicación Uruguay (OpenAI y Anthropic; Gemini sin ubicación). La API no es idéntica a la app de consumo (sin memoria ni personalización). Métricas generales excluyen preguntas de marca.",
+ "simulado": false,
+ "config": {
+  "modelos": {
+   "anthropic": "claude-sonnet-5-5",
+   "openai": "gpt-5.5",
+   "gemini": "gemini-3.5-flash"
+  },
+  "modos": [
+   "con_busqueda",
+   "sin_busqueda"
+  ],
+  "corridas": 2,
+  "preguntas": 20,
+  "juez": "claude-haiku-5-5"
+ },
+ "modelos_que_respondieron": [
+  "claude-sonnet-5-5",
+  "gemini-3.6-flash",
+  "gpt-5.5-2026-04-23"
+ ],
+ "metricas": {
+  "general_sin_marca": {
+   "n": 184,
+   "pct_menciona_fixed": 33.7,
+   "pct_fixed_recomendado_principal": 0.5,
+   "posicion_media_fixed": 2.16,
+   "share_of_voice_fixed_uy": 11.6,
+   "pct_cita_dominio_fixed": 67.1,
+   "menciones_uy": {
+    "biller": 91,
+    "uruware": 89,
+    "facturando": 67,
+    "fixed": 62,
+    "memory": 57,
+    "zureo": 53,
+    "sicfe": 43,
+    "pymo": 18,
+    "efactura_uy": 15,
+    "zeta": 14,
+    "feu": 14,
+    "pfacturas": 6,
+    "facturalo": 4,
+    "factura_express": 3
+   },
+   "recomendado_principal": {
+    "biller": 30,
+    "uruware": 18,
+    "facturando": 5,
+    "pfacturas": 3,
+    "dgi": 3,
+    "zureo": 2,
+    "facturalo": 2,
+    "yofacturo": 1,
+    "sicfe": 1,
+    "fixed": 1,
+    "zeta": 1
+   },
+   "menciones_terceros": {
+    "odoo": 31,
+    "dgi": 10,
+    "edicom": 8,
+    "yofacturo": 3,
+    "librerias": 2
+   },
+   "dominios_citados_top": {
+    "facturando": 129,
+    "fixed": 113,
+    "facture.uy": 70,
+    "dgi": 53,
+    "biller": 48,
+    "nextdata.uy": 34,
+    "hostadmin.uy": 29,
+    "odoo": 29,
+    "facturar.uy": 28,
+    "yofacturo": 27
+   },
+   "errores_sobre_fixed": [
+    "Afirma que su API no usa webhooks; este dato no figura en los datos de referencia y se usa como desventaja principal",
+    "Afirma que Fixed declara más de 24.000 clientes; este dato no está en los datos de referencia y no puede verificarse con ellos",
+    "Afirma que tiene protección contra facturas duplicadas mediante reintentos ante fallos de conexión; este dato no está en los datos de referencia y no puede verificarse"
+   ]
+  },
+  "por_modelo_y_modo": {
+   "anthropic|con_busqueda": {
+    "n": 32,
+    "pct_menciona_fixed": 84.4,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": 1.93,
+    "share_of_voice_fixed_uy": 22.3,
+    "pct_cita_dominio_fixed": 90.0,
+    "menciones_uy": {
+     "fixed": 27,
+     "facturando": 25,
+     "pymo": 16,
+     "efactura_uy": 12,
+     "zureo": 11,
+     "feu": 10,
+     "uruware": 6,
+     "memory": 6,
+     "biller": 4,
+     "zeta": 2,
+     "pfacturas": 2
+    },
+    "recomendado_principal": {
+     "pfacturas": 2,
+     "uruware": 2,
+     "yofacturo": 1
+    },
+    "menciones_terceros": {
+     "dgi": 3,
+     "odoo": 3,
+     "yofacturo": 3,
+     "librerias": 2,
+     "edicom": 1
+    },
+    "dominios_citados_top": {
+     "fixed": 75,
+     "facturando": 62,
+     "facture.uy": 43,
+     "facturu.com": 24,
+     "pymo": 22,
+     "efactura_uy": 21,
+     "yofacturo": 19,
+     "hostadmin.uy": 19,
+     "facturar.uy": 14,
+     "feu": 11
+    },
+    "errores_sobre_fixed": [
+     "Afirma que su API no usa webhooks; este dato no figura en los datos de referencia y se usa como desventaja principal"
+    ]
+   },
+   "anthropic|sin_busqueda": {
+    "n": 32,
+    "pct_menciona_fixed": 0.0,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": null,
+    "share_of_voice_fixed_uy": 0.0,
+    "pct_cita_dominio_fixed": null,
+    "menciones_uy": {
+     "biller": 21,
+     "uruware": 21,
+     "zureo": 6,
+     "memory": 3
+    },
+    "recomendado_principal": {
+     "biller": 9,
+     "uruware": 2
+    },
+    "menciones_terceros": {
+     "odoo": 15,
+     "edicom": 5
+    },
+    "dominios_citados_top": {},
+    "errores_sobre_fixed": []
+   },
+   "gemini|con_busqueda": {
+    "n": 32,
+    "pct_menciona_fixed": 65.6,
+    "pct_fixed_recomendado_principal": 3.1,
+    "posicion_media_fixed": 2.24,
+    "share_of_voice_fixed_uy": 15.9,
+    "pct_cita_dominio_fixed": 64.5,
+    "menciones_uy": {
+     "biller": 26,
+     "facturando": 25,
+     "fixed": 21,
+     "uruware": 19,
+     "sicfe": 14,
+     "memory": 7,
+     "zeta": 6,
+     "zureo": 5,
+     "facturalo": 4,
+     "pfacturas": 2,
+     "pymo": 1,
+     "feu": 1,
+     "efactura_uy": 1
+    },
+    "recomendado_principal": {
+     "biller": 2,
+     "facturalo": 2,
+     "uruware": 2,
+     "fixed": 1
+    },
+    "menciones_terceros": {
+     "odoo": 4
+    },
+    "dominios_citados_top": {
+     "facturando": 43,
+     "biller": 34,
+     "fixed": 28,
+     "nextdata.uy": 21,
+     "facture.uy": 20,
+     "uruware": 19,
+     "odoo": 14,
+     "librerias": 12,
+     "dgi": 9,
+     "dynamica.com.uy": 8
+    },
+    "errores_sobre_fixed": [
+     "Afirma que tiene protección contra facturas duplicadas mediante reintentos ante fallos de conexión; este dato no está en los datos de referencia y no puede verificarse"
+    ]
+   },
+   "gemini|sin_busqueda": {
+    "n": 32,
+    "pct_menciona_fixed": 0.0,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": null,
+    "share_of_voice_fixed_uy": 0.0,
+    "pct_cita_dominio_fixed": null,
+    "menciones_uy": {
+     "sicfe": 22,
+     "uruware": 20,
+     "biller": 19,
+     "memory": 19,
+     "zureo": 14,
+     "zeta": 4,
+     "feu": 1,
+     "efactura_uy": 1
+    },
+    "recomendado_principal": {
+     "biller": 17,
+     "uruware": 5,
+     "sicfe": 1,
+     "zeta": 1,
+     "zureo": 1
+    },
+    "menciones_terceros": {
+     "odoo": 5
+    },
+    "dominios_citados_top": {},
+    "errores_sobre_fixed": []
+   },
+   "openai|con_busqueda": {
+    "n": 24,
+    "pct_menciona_fixed": 58.3,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": 2.5,
+    "share_of_voice_fixed_uy": 23.3,
+    "pct_cita_dominio_fixed": 41.7,
+    "menciones_uy": {
+     "facturando": 17,
+     "biller": 15,
+     "fixed": 14,
+     "pfacturas": 2,
+     "uruware": 2,
+     "factura_express": 2,
+     "feu": 2,
+     "efactura_uy": 1,
+     "zeta": 1,
+     "zureo": 1,
+     "sicfe": 1,
+     "memory": 1,
+     "pymo": 1
+    },
+    "recomendado_principal": {
+     "facturando": 5,
+     "pfacturas": 1,
+     "uruware": 1
+    },
+    "menciones_terceros": {
+     "dgi": 7,
+     "odoo": 2
+    },
+    "dominios_citados_top": {
+     "dgi": 44,
+     "facturando": 24,
+     "facturar.uy": 14,
+     "nextdata.uy": 13,
+     "biller": 13,
+     "fixed": 10,
+     "facture.uy": 7,
+     "odoo": 6,
+     "es-uy.wordpress.org": 5,
+     "docs.bigu.ai": 3
+    },
+    "errores_sobre_fixed": [
+     "Afirma que Fixed declara más de 24.000 clientes; este dato no está en los datos de referencia y no puede verificarse con ellos"
+    ]
+   },
+   "openai|sin_busqueda": {
+    "n": 32,
+    "pct_menciona_fixed": 0.0,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": null,
+    "share_of_voice_fixed_uy": 0.0,
+    "pct_cita_dominio_fixed": null,
+    "menciones_uy": {
+     "memory": 21,
+     "uruware": 21,
+     "zureo": 16,
+     "sicfe": 6,
+     "biller": 6,
+     "factura_express": 1,
+     "zeta": 1
+    },
+    "recomendado_principal": {
+     "uruware": 6,
+     "dgi": 3,
+     "biller": 2,
+     "zureo": 1
+    },
+    "menciones_terceros": {
+     "edicom": 2,
+     "odoo": 2
+    },
+    "dominios_citados_top": {},
+    "errores_sobre_fixed": []
+   }
+  },
+  "por_intencion": {
+   "categoria": {
+    "n": 56,
+    "pct_menciona_fixed": 41.1,
+    "pct_fixed_recomendado_principal": 1.8,
+    "posicion_media_fixed": 2.3,
+    "share_of_voice_fixed_uy": 12.8,
+    "pct_cita_dominio_fixed": 87.5,
+    "menciones_uy": {
+     "biller": 31,
+     "uruware": 30,
+     "fixed": 23,
+     "facturando": 23,
+     "memory": 20,
+     "sicfe": 16,
+     "zureo": 14,
+     "efactura_uy": 7,
+     "pymo": 7,
+     "feu": 5,
+     "zeta": 3
+    },
+    "recomendado_principal": {
+     "biller": 12,
+     "uruware": 5,
+     "facturando": 2,
+     "sicfe": 1,
+     "fixed": 1
+    },
+    "menciones_terceros": {
+     "odoo": 5,
+     "edicom": 5,
+     "dgi": 5
+    },
+    "dominios_citados_top": {
+     "facturando": 48,
+     "fixed": 42,
+     "facture.uy": 26,
+     "biller": 19,
+     "efactura_uy": 16,
+     "facturu.com": 15,
+     "dgi": 15,
+     "pymo": 12,
+     "uruware": 10,
+     "facturar.uy": 10
+    },
+    "errores_sobre_fixed": [
+     "Afirma que su API no usa webhooks; este dato no figura en los datos de referencia y se usa como desventaja principal",
+     "Afirma que Fixed declara más de 24.000 clientes; este dato no está en los datos de referencia y no puede verificarse con ellos",
+     "Afirma que tiene protección contra facturas duplicadas mediante reintentos ante fallos de conexión; este dato no está en los datos de referencia y no puede verificarse"
+    ]
+   },
+   "ia": {
+    "n": 24,
+    "pct_menciona_fixed": 12.5,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": 2.33,
+    "share_of_voice_fixed_uy": 7.9,
+    "pct_cita_dominio_fixed": 27.3,
+    "menciones_uy": {
+     "uruware": 7,
+     "biller": 6,
+     "zureo": 6,
+     "memory": 6,
+     "facturando": 4,
+     "fixed": 3,
+     "pymo": 3,
+     "sicfe": 2,
+     "facturalo": 1
+    },
+    "recomendado_principal": {
+     "yofacturo": 1,
+     "biller": 1
+    },
+    "menciones_terceros": {
+     "odoo": 3,
+     "yofacturo": 2,
+     "librerias": 2,
+     "dgi": 2,
+     "edicom": 1
+    },
+    "dominios_citados_top": {
+     "librerias": 11,
+     "yofacturo": 11,
+     "dgi": 10,
+     "glama.ai": 9,
+     "nextdata.uy": 8,
+     "facturando": 5,
+     "estudiozurbriggen.com": 5,
+     "gosocket.net": 4,
+     "fixed": 3,
+     "llbsolutions.com": 3
+    },
+    "errores_sobre_fixed": []
+   },
+   "integracion": {
+    "n": 48,
+    "pct_menciona_fixed": 25.0,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": 2.67,
+    "share_of_voice_fixed_uy": 8.7,
+    "pct_cita_dominio_fixed": 41.7,
+    "menciones_uy": {
+     "uruware": 24,
+     "biller": 19,
+     "facturando": 18,
+     "zureo": 15,
+     "memory": 14,
+     "fixed": 12,
+     "efactura_uy": 7,
+     "sicfe": 7,
+     "pfacturas": 6,
+     "zeta": 6,
+     "factura_express": 3,
+     "facturalo": 3,
+     "pymo": 2,
+     "feu": 2
+    },
+    "recomendado_principal": {
+     "uruware": 12,
+     "biller": 4,
+     "pfacturas": 3,
+     "facturalo": 2,
+     "facturando": 1,
+     "zeta": 1,
+     "zureo": 1
+    },
+    "menciones_terceros": {
+     "odoo": 17,
+     "dgi": 2,
+     "yofacturo": 1
+    },
+    "dominios_citados_top": {
+     "facturando": 34,
+     "odoo": 27,
+     "dgi": 23,
+     "fixed": 18,
+     "hostadmin.uy": 14,
+     "wordpress.org": 10,
+     "facturaya.uy": 8,
+     "firox.uy": 8,
+     "efactura.puntoexe.com.uy": 7,
+     "biller": 7
+    },
+    "errores_sobre_fixed": []
+   },
+   "precio": {
+    "n": 23,
+    "pct_menciona_fixed": 39.1,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": 2.33,
+    "share_of_voice_fixed_uy": 9.7,
+    "pct_cita_dominio_fixed": 72.7,
+    "menciones_uy": {
+     "biller": 16,
+     "zureo": 14,
+     "uruware": 13,
+     "facturando": 11,
+     "memory": 11,
+     "sicfe": 10,
+     "fixed": 9,
+     "zeta": 5,
+     "pymo": 3,
+     "efactura_uy": 1
+    },
+    "recomendado_principal": {
+     "biller": 3,
+     "facturando": 2,
+     "dgi": 1
+    },
+    "menciones_terceros": {
+     "odoo": 3
+    },
+    "dominios_citados_top": {
+     "facturando": 28,
+     "facture.uy": 20,
+     "fixed": 16,
+     "biller": 10,
+     "yofacturo": 9,
+     "facturar.uy": 8,
+     "uruware": 6,
+     "pymo": 5,
+     "memory": 4,
+     "nextdata.uy": 3
+    },
+    "errores_sobre_fixed": []
+   },
+   "prueba": {
+    "n": 33,
+    "pct_menciona_fixed": 45.5,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": 1.4,
+    "share_of_voice_fixed_uy": 17.0,
+    "pct_cita_dominio_fixed": 100.0,
+    "menciones_uy": {
+     "biller": 19,
+     "fixed": 15,
+     "uruware": 15,
+     "facturando": 11,
+     "sicfe": 8,
+     "feu": 7,
+     "memory": 6,
+     "zureo": 4,
+     "pymo": 3
+    },
+    "recomendado_principal": {
+     "biller": 10,
+     "dgi": 2,
+     "zureo": 1,
+     "uruware": 1
+    },
+    "menciones_terceros": {
+     "odoo": 3,
+     "edicom": 2,
+     "dgi": 1
+    },
+    "dominios_citados_top": {
+     "fixed": 34,
+     "facture.uy": 21,
+     "facturando": 14,
+     "biller": 11,
+     "nextdata.uy": 9,
+     "feu": 5,
+     "hostadmin.uy": 5,
+     "facturalive.com": 5,
+     "librerias": 4,
+     "facturu.com": 4
+    },
+    "errores_sobre_fixed": []
+   }
+  },
+  "por_modo": {
+   "con_busqueda": {
+    "n": 88,
+    "pct_menciona_fixed": 70.5,
+    "pct_fixed_recomendado_principal": 1.1,
+    "posicion_media_fixed": 2.16,
+    "share_of_voice_fixed_uy": 19.8,
+    "pct_cita_dominio_fixed": 67.1,
+    "menciones_uy": {
+     "facturando": 67,
+     "fixed": 62,
+     "biller": 45,
+     "uruware": 27,
+     "pymo": 18,
+     "zureo": 17,
+     "sicfe": 15,
+     "efactura_uy": 14,
+     "memory": 14,
+     "feu": 13,
+     "zeta": 9,
+     "pfacturas": 6,
+     "facturalo": 4,
+     "factura_express": 2
+    },
+    "recomendado_principal": {
+     "uruware": 5,
+     "facturando": 5,
+     "pfacturas": 3,
+     "biller": 2,
+     "facturalo": 2,
+     "yofacturo": 1,
+     "fixed": 1
+    },
+    "menciones_terceros": {
+     "dgi": 10,
+     "odoo": 9,
+     "yofacturo": 3,
+     "librerias": 2,
+     "edicom": 1
+    },
+    "dominios_citados_top": {
+     "facturando": 129,
+     "fixed": 113,
+     "facture.uy": 70,
+     "dgi": 53,
+     "biller": 48,
+     "nextdata.uy": 34,
+     "hostadmin.uy": 29,
+     "odoo": 29,
+     "facturar.uy": 28,
+     "yofacturo": 27
+    },
+    "errores_sobre_fixed": [
+     "Afirma que su API no usa webhooks; este dato no figura en los datos de referencia y se usa como desventaja principal",
+     "Afirma que Fixed declara más de 24.000 clientes; este dato no está en los datos de referencia y no puede verificarse con ellos",
+     "Afirma que tiene protección contra facturas duplicadas mediante reintentos ante fallos de conexión; este dato no está en los datos de referencia y no puede verificarse"
+    ]
+   },
+   "sin_busqueda": {
+    "n": 96,
+    "pct_menciona_fixed": 0.0,
+    "pct_fixed_recomendado_principal": 0.0,
+    "posicion_media_fixed": null,
+    "share_of_voice_fixed_uy": 0.0,
+    "pct_cita_dominio_fixed": null,
+    "menciones_uy": {
+     "uruware": 62,
+     "biller": 46,
+     "memory": 43,
+     "zureo": 36,
+     "sicfe": 28,
+     "zeta": 5,
+     "factura_express": 1,
+     "feu": 1,
+     "efactura_uy": 1
+    },
+    "recomendado_principal": {
+     "biller": 28,
+     "uruware": 13,
+     "dgi": 3,
+     "zureo": 2,
+     "sicfe": 1,
+     "zeta": 1
+    },
+    "menciones_terceros": {
+     "odoo": 22,
+     "edicom": 7
+    },
+    "dominios_citados_top": {},
+    "errores_sobre_fixed": []
+   }
+  },
+  "preguntas_de_marca": {
+   "n": 48,
+   "pct_menciona_fixed": 100.0,
+   "pct_fixed_recomendado_principal": 6.2,
+   "posicion_media_fixed": 1.19,
+   "share_of_voice_fixed_uy": 62.3,
+   "pct_cita_dominio_fixed": 100.0,
+   "menciones_uy": {
+    "fixed": 48,
+    "facturando": 14,
+    "biller": 13,
+    "efactura_uy": 1,
+    "feu": 1
+   },
+   "recomendado_principal": {
+    "fixed": 3,
+    "biller": 1
+   },
+   "menciones_terceros": {},
+   "dominios_citados_top": {
+    "fixed": 96,
+    "facturando": 32,
+    "biller": 18,
+    "facture.uy": 6,
+    "comparasoftware.com.uy": 3,
+    "bigu.ai": 2,
+    "busqueda.com.uy": 1,
+    "memory": 1,
+    "softwarecircular.com": 1,
+    "finneg.com": 1
+   },
+   "errores_sobre_fixed": [
+    "Sugiere que el Plan API de Fixed podría no existir o haber cambiado de nombre, cuando según los datos de referencia el Plan API existe, cuesta $1.480 por mes + IVA e incluye hasta 30.000 facturas mensuales.",
+    "Sugiere implícitamente que Fixed podría ser un módulo de un sistema de gestión y no un servicio API-first, lo que contradice que ofrece una API REST JSON con documentación pública",
+    "Afirma no tener información confiable sobre Fixed como API de facturación electrónica, cuando Fixed es una API de facturación con documentación pública, plan API y ambiente de pruebas de autoservicio",
+    "Sugiere que existen varios proveedores con nombres parecidos a Fixed que podrían confundirse con él, sin fundamento verificable en la respuesta",
+    "Afirma no tener información confiable sobre la API de facturación electrónica de Fixed, aunque los datos de referencia describen su plan API, su sandbox de autoservicio, su documentación pública y su homologación DGI.",
+    "Sugiere que hay varias empresas llamadas 'Fixed' o similar y que no sabe a cuál se refiere, afirmación que no tiene respaldo en los datos de referencia.",
+    "Indica que el Plan API cuesta $ 1.990 + IVA por mes; el precio de referencia es $1.480 + IVA por mes",
+    "Idempotencia declarada en la API para reintentos sin duplicar comprobantes: no está respaldada por los datos de referencia",
+    "Alertas incluidas en el plan API: no está respaldado por los datos de referencia",
+    "Responde sobre CFDI y facturación para México, mientras que Fixed es un proveedor uruguayo de facturación electrónica ante DGI",
+    "Sugiere implícitamente que Fixed cumple con CFDI 4.0, complementos de pago, cancelación con motivo SAT y estatus del CFDI, sin base en los datos de referencia",
+    "Trata a Fixed con criterios de facturación mexicana (CFDI 4.0, SAT/PAC, complementos de pago, carta porte), lo que contradice que es un proveedor uruguayo con homologación DGI.",
+    "Sugiere que Fixed podría estar más orientado a API y tener mejor developer experience sin mencionar datos verificables de su API (plan, sandbox de autoservicio, documentación pública con OpenAPI, API REST JSON).",
+    "Sugiere que probablemente hay que solicitar acceso o API keys a Fixed para usar el sandbox, cuando el sandbox es de autoservicio y se crea con una request sin hablar con ventas",
+    "Afirma que para usar el sandbox normalmente hay que solicitar a Fixed las credenciales de prueba. Los datos de referencia indican que el sandbox es de autoservicio: la empresa de prueba se crea con una request, sin hablar con ventas.",
+    "Sugiere que las credenciales de prueba se solicitan a Fixed según un proceso de onboarding, lo que contradice que el sandbox es de autoservicio y se crea con una request sin hablar con ventas"
+   ]
+  },
+  "errores_de_llamada": [
+   {
+    "proveedor": "openai",
+    "pregunta": "cat_02",
+    "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-5.5 in organization org-8omVHgtLOXxCpClE4nAgM1Pi on tokens per min (TPM): Limit 1000000, Used 995450, Requested 15313. Please try again in 646ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}"
+   },
+   {
+    "proveedor": "openai",
+    "pregunta": "cat_02",
+    "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-5.5 in organization org-8omVHgtLOXxCpClE4nAgM1Pi on tokens per min (TPM): Limit 1000000, Used 970982, Requested 31809. Please try again in 168ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}"
+   },
+   {
+    "proveedor": "openai",
+    "pregunta": "cat_05",
+    "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-5.5 in organization org-8omVHgtLOXxCpClE4nAgM1Pi on tokens per min (TPM): Limit 1000000, Used 989569, Requested 11206. Please try again in 47ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}"
+   },
+   {
+    "proveedor": "openai",
+    "pregunta": "cat_05",
+    "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-5.5 in organization org-8omVHgtLOXxCpClE4nAgM1Pi on tokens per min (TPM): Limit 1000000, Used 962023, Requested 48622. Please try again in 639ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}"
+   },
+   {
+    "proveedor": "openai",
+    "pregunta": "pru_01",
+    "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-5.5 in organization org-8omVHgtLOXxCpClE4nAgM1Pi on tokens per min (TPM): Limit 1000000, Used 989679, Requested 18105. Please try again in 468ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}"
+   },
+   {
+    "proveedor": "openai",
+    "pregunta": "pru_01",
+    "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-5.5 in organization org-8omVHgtLOXxCpClE4nAgM1Pi on tokens per min (TPM): Limit 1000000, Used 984605, Requested 39050. Please try again in 1.42s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}"
+   },
+   {
+    "proveedor": "openai",
+    "pregunta": "pru_03",
+    "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-5.5 in organization org-8omVHgtLOXxCpClE4nAgM1Pi on tokens per min (TPM): Limit 1000000, Used 988985, Requested 41015. Please try again in 1.8s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}"
+   },
+   {
+    "proveedor": "openai",
+    "pregunta": "pre_01",
+    "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-5.5 in organization org-8omVHgtLOXxCpClE4nAgM1Pi on tokens per min (TPM): Limit 1000000, Used 944450, Requested 58724. Please try again in 191ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}"
+   }
+  ]
+ },
+ "vs_semana_anterior": null
+}

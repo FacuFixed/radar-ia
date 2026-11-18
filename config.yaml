@@ -2,7 +2,7 @@
 # Los nombres de modelo cambian seguido: corré `python -m radar_ia check` para validar
 # que existan con tus keys antes de la primera corrida programada.
 
-corridas_por_pregunta: 3          # las respuestas varían; 3 es el mínimo razonable
+corridas_por_pregunta: 2
 modos: [con_busqueda, sin_busqueda]
 pais: UY                          # ubicación aproximada para la búsqueda web (OpenAI y Anthropic)
 ciudad: Montevideo

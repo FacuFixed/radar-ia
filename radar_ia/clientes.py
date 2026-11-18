@@ -47,9 +47,12 @@ class ClienteAnthropic:
                 "type": "web_search_20250305",
                 "name": "web_search",
                 "max_uses": self.cfg["max_busquedas_por_respuesta"],
-                "user_location": {"type": "approximate", "country": self.cfg["pais"], "city": self.cfg["ciudad"]},
+                # Anthropic no soporta country: UY; el contexto geográfico va en el texto
             }]
-        mensajes: list[dict] = [{"role": "user", "content": texto}]
+        ciudad = self.cfg.get("ciudad", "")
+        pais = self.cfg.get("pais", "")
+        geo = f" (contexto: estoy en {ciudad}, {pais})" if con_busqueda and ciudad else ""
+        mensajes: list[dict] = [{"role": "user", "content": texto + geo}]
         bloques: list = []
         uso = {"input_tokens": 0, "output_tokens": 0, "busquedas": 0}
         # La búsqueda web del lado del servidor puede pausar el turno (stop_reason=pause_turn):
