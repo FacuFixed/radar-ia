@@ -157,6 +157,14 @@ def cmd_run(cfg, args):
     print(f"{len(tareas)} llamadas: {len(clientes)} asistentes x {len(preguntas)} preguntas x {len(modos)} modos x {corridas} corridas")
     conc = cfg.get("concurrencia_por_proveedor") or {}
     sem = {c.proveedor: threading.Semaphore(conc.get(c.proveedor, cfg["concurrencia"])) for c in clientes}
+    # Cada respuesta se guarda apenas llega: si la corrida se corta, lo ya pagado queda en el repo.
+    parcial = salida / "respuestas.parcial.jsonl"
+    parcial.unlink(missing_ok=True)
+    lock = threading.Lock()
+
+    def guardar_parcial(fila):
+        with lock, open(parcial, "a", encoding="utf-8") as fh:
+            fh.write(json.dumps(fila, ensure_ascii=False) + "\n")
 
     def una(t):
         c, p, modo, i = t
@@ -174,11 +182,13 @@ def cmd_run(cfg, args):
             except Exception as e:  # noqa: BLE001 - se registra y se sigue con el resto
                 fila.update(error=f"{type(e).__name__}: {e}"[:500], error_tipo=type(e).__name__,
                             latencia_s=round(time.monotonic() - t0, 1))
+                guardar_parcial(fila)
                 return fila
         try:
             procesar_fila(fila, proveedores, juez)
         except Exception as e:  # noqa: BLE001 - la respuesta queda guardada aunque falle el juez
             fila["error_extraccion"] = f"{type(e).__name__}: {e}"[:300]
+        guardar_parcial(fila)
         return fila
 
     filas = []
@@ -200,7 +210,8 @@ def cmd_run(cfg, args):
             filas[i] = nueva
 
     _escribir_filas(salida / "respuestas.jsonl", filas)
-    extra = {"simulado": bool(args.simular), "prueba": bool(args.prueba),
+    parcial.unlink(missing_ok=True)
+    extra ={"simulado": bool(args.simular), "prueba": bool(args.prueba),
              "config": {"modelos": cfg["modelos"], "modos": modos, "corridas": corridas, "preguntas": len(preguntas),
                         "juez": cfg["juez"]["modelo"] if juez else None, "juez_version": juez.version if juez else None}}
     resumen = armar_resumen(fecha, filas, cfg, proveedores, extra)

@@ -29,6 +29,8 @@ jobs:
       - run: pip install -r requirements.txt pytest
       - run: python -m pytest -q
       - name: Correr radar
+        # tope propio, menor que el del job, para que siempre quede tiempo de guardar
+        timeout-minutes: 105
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -44,9 +46,13 @@ jobs:
           [[ "$CORRIDAS" =~ ^[0-9]+$ ]] && ARGS+=(--corridas "$CORRIDAS")
           python -m radar_ia run "${ARGS[@]}"
       - name: Guardar resultados en el repo
+        # corre aunque la corrida falle o se corte: guarda lo que ya se pagó (respuestas.parcial.jsonl)
+        if: always()
         run: |
           git config user.name "radar-ia-bot"
           git config user.email "radar-ia-bot@users.noreply.github.com"
           git add resultados/ docs/
-          git diff --cached --quiet || git commit -m "Radar IA $(date -u +%F)"
+          MSG="Radar IA $(date -u +%F)"
+          ls resultados/*/respuestas.parcial.jsonl >/dev/null 2>&1 && MSG="$MSG (PARCIAL: la corrida no terminó)"
+          git diff --cached --quiet || git commit -m "$MSG"
           git push
