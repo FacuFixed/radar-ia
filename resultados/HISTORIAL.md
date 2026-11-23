@@ -6,6 +6,71 @@ Evolución semanal de la visibilidad de Fixed en Claude, ChatGPT y Gemini. Gener
 
 ---
 
+## 2026-11-23
+
+**Descubrimiento con búsqueda (n=66)** · posición **#2/11** · líder facturando · brecha 4.9 pp de SoV (11 menciones)
+
+| Métrica | Valor (IC 95%) |
+|---|---|
+| Menciona a Fixed | 66.7% (54.7–76.8) |
+| Fixed en top 3 | 63.6% (51.6–74.2) |
+| Recomendado 1º | 20.3% (12.3–31.7) |
+| No elige ninguno | 67.2% (55.0–77.4) |
+| Share of voice UY | 19.6% (15.0–25.3) |
+| Puntaje por posición (0–100) | 53.6 |
+
+Por corrida: #1: menciona 72.7%, SoV 19.4% · #2: menciona 60.6%, SoV 20.0%
+
+**Ranking con búsqueda:** 1. facturando 55 (25%) · **2. fixed 44 (20%)** · 3. biller 33 (15%) · 4. sicfe 18 (8%) · 5. pymo 16 (7%) · 6. feu 15 (7%) · 7. uruware 15 (7%) · 8. efactura_uy 11 (5%) · 9. zeta 9 (4%) · 10. zureo 5 (2%) · 11. memory 3 (1%)
+
+**Ranking sin búsqueda (memoria del modelo), Fixed #— (no aparece):** 1. uruware 39 (22%) · 2. memory 39 (22%) · 3. biller 35 (20%) · 4. zureo 28 (16%) · 5. sicfe 25 (14%) · 6. zeta 5 (3%) · 7. factura_express 1 (1%) · 8. efactura_uy 1 (1%) · 9. facturando 1 (1%)
+
+**Por intención (con búsqueda):**
+
+| Intención | n | Menciona | Top 3 | Top 1 | No elige | SoV | Posición |
+|---|---|---|---|---|---|---|---|
+| Descubrimiento | 66 | 66.7% | 63.6% | 20.3% | 67.2% | 19.6% | #2/11 |
+| Comparación | 18 | 72.2% | 72.2% | 21.4% | 57.1% | 30.2% | #1/8 |
+| Técnico | 30 | 33.3% | 30.0% | 3.3% | 70.0% | 12.2% | #3/14 |
+| Precio | 12 | 83.3% | 75.0% | 0.0% | 54.5% | 19.2% | #2/11 |
+| Marca | 12 | 100.0% | 100.0% | 58.3% | 41.7% | 80.0% | #1/2 |
+| Todas sin marca | 126 | 61.1% | 57.9% | 14.3% | 65.5% | 19.2% | #2/14 |
+
+**Por asistente (descubrimiento):**
+
+| Asistente | Modo | n | Menciona | Top 3 | Top 1 | SoV |
+|---|---|---|---|---|---|---|
+| Claude | con busqueda | 22 | 95.5% (78.2–99.2) | 95.5% | 23.8% | 23.6% |
+| Gemini | con busqueda | 22 | 31.8% (16.4–52.7) | 22.7% | 4.5% | 9.0% |
+| ChatGPT | con busqueda | 22 | 72.7% (51.8–86.8) | 72.7% | 33.3% | 28.1% |
+| Claude | sin busqueda | 22 | 0.0% (0.0–14.9) | 0.0% | 0.0% | 0.0% |
+| Gemini | sin busqueda | 22 | 0.0% (0.0–14.9) | 0.0% | 0.0% | 0.0% |
+| ChatGPT | sin busqueda | 22 | 0.0% (0.0–14.9) | 0.0% | 0.0% | 0.0% |
+
+**Fuentes citadas (todas sin marca, con búsqueda):** 119 respuestas con citas; citan un dominio de Fixed: 63.0%. Por tipo: tercero 680, competidor 364, propio 173, oficial 93
+
+URLs de Fixed citadas: fixed.uy/facturarConAPI (82) · fixed.uy (59) · developers.fixed.uy (25) · developers.fixed.uy/referencia/ventas/crear-venta (3) · developers.fixed.uy/referencia/otros/crear-empresa-prueba (2) · developers.fixed.uy/primeros-pasos (1) · developers.fixed.uy/conceptos/ambientes (1)
+
+**Exactitud sobre Fixed (sin marca, 75 respuestas que lo nombran):** incorrecto 16 · correcto no registrado 68 · no verificable 44
+- ❌ (Claude, cat_02) La API no requiere webhooks para funcionar, sin notificaciones push de estado
+- ❌ (Claude, cat_04) Cada CFE excedente cuesta $0,1 (la referencia indica $0,1 por factura excedente, pero la respuesta afirma por CFE excedente — concordancia de terminología, no contradicción de dato)
+- ❌ (Claude, int_04) Fixed se presenta como servicio de sistema en el que la homologación DGI está a cargo del proveedor, pero el dominio citado es fixed.uy, no fixed.uy como dato verificado; la URL de referencia es developers.fixed.uy.
+- ❌ (Claude, dev_03) El plan API incluye hasta 30.000 facturas mensuales, $0,1 por factura excedente, sandbox y homologación DGI incluida (el precio de $0,1 por factura excedente coincide, pero la respuesta no da el precio base; ver nota)
+- ❌ (Gemini, pru_01) La respuesta lo presenta como 'Facture ERP / Fixed' y 'Facture (anteriormente vinculado al sistema Fixed)', afirmando un cambio de nombre que contradice que Fixed es la empresa uruguaya de facturación electrónica
+- ❌ (Gemini, pre_01) Los planes con API parten desde $514 UYU / mes (con beneficio fiscal) hasta tramos de $1.200 a $1.500 UYU + IVA / mes
+- ❌ (Gemini, pre_02) Precio de la API de ~$1.480 UYU / mes + IVA coincide, pero el excedente de $0.10 se presenta en UYU (dato de referencia es $0,1 sin moneda explícita)
+- ❌ (Gemini, pre_02) La respuesta ubica a Fixed como de 'entorno Sandbox muy completo', lo que no contradice pero sí afirma que el sandbox valida sin afectar la operativa real
+Omisiones más frecuentes: lider (74), idempotencia (62), documentacion (48), precio (36), sandbox (34), homologacion (30)
+
+**Exactitud sobre Fixed (preguntas de marca, 12 respuestas que lo nombran):** incorrecto 2 · correcto no registrado 26 · no verificable 22
+- ❌ (Gemini, mar_01) Precio con beneficio fiscal de $966 / mes, que no aparece en los datos de referencia y se presenta como precio vigente
+- ❌ (Gemini, mar_01) Precio con beneficio fiscal (DGI) de $966 UYU por mes
+Omisiones más frecuentes: lider (12), documentacion (10), idempotencia (10), sandbox (7), precio (4), homologacion (3)
+
+_Config: 23 preguntas, 2 corridas, modos con_busqueda, sin_busqueda, juez claude-haiku-5-5 v2. Modelos: claude-sonnet-5-5, gemini-3.6-flash, gpt-5.5-2026-04-23._
+
+---
+
 ## 2026-11-18
 
 **Descubrimiento con búsqueda (n=66)** · posición **#2/11** · líder facturando · brecha 5.3 pp de SoV (12 menciones)
