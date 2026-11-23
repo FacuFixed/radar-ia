@@ -2,8 +2,8 @@ name: Radar IA semanal
 
 on:
   schedule:
-    # Lunes 07:17 UTC (04:17 en Uruguay), antes de la revisión semanal del radar
-    - cron: "17 7 * * 1"
+    # Lunes 07:23 UTC (04:23 en Uruguay), antes de la revisión semanal del radar
+    - cron: "23 7 * * 1"
   workflow_dispatch:
     inputs:
       limite:
